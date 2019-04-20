@@ -1,5 +1,5 @@
 ﻿body {
-    font-family: 'Open Sans', sans-serif;
+    font-family:   'Noto Sans', sans-serif;
     font-weight: lighter;
     color: #202020;
     margin: 0px;
@@ -56,7 +56,9 @@ h1 {
     box-sizing: border-box;
     user-select: none;
     cursor: pointer;
-}
+         font-weight:   normal;
+             position:relative;
+          }
 
 .keyboard-letterkey {
     width: 3.33em;
@@ -66,3 +68,39 @@ h1 {
         background-color: #F4F4F4;
         border: 1px solid #E4E4E4;
     }
+
+        .keyboard-key-uppershift{
+              position:absolute;
+                display:block;
+                   top:0em;
+                     left:0em;
+                        width:1.67em;
+
+                          height:   1.67em;
+                   text-align:left;
+                      padding:0.17em 0.33em;
+        }
+
+        .keyboard-key-alternateuppershift{
+              position:absolute;
+                display:block;
+                   top:0em;
+                       right:0em;
+                        width:1.67em;
+
+                          height:   1.67em;
+                   text-align:  right;
+                      padding:0.17em 0.33em;
+        }
+
+        .keyboard-key-alternatelowershift{
+              position:absolute;
+                display:block;
+                     bottom:0em;
+                       right:0em;
+                        width:1.67em;
+
+                          height:   1.3em;
+                   text-align:  right;
+                      padding:0.17em 0.33em;
+        }

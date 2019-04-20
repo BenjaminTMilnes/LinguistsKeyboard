@@ -1,30 +1,32 @@
 ﻿
 
+   <textarea class="mainoutput" rows="7" ng-model="mainOutput" ng-keydown="keyDown($event)"></textarea>
+
 <div class="keyboard">
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">`</div>
-        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row1Keys">
+        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row1Keys" ng-click="typeLetter(key)">
             {{key}}
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:5em;">←</div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:5em;">↹</div>
-        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row2Keys">
+        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row2Keys" ng-click="typeLetter(key)">
             {{key}}
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;"></div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:5.67em;">caps</div>
-        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row3Keys">
+        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row3Keys" ng-click="typeLetter(key)">
             {{key}}
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:2.67em;"></div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:4em;">↑</div>
-        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row4Keys">
+        <div class="keyboard-key keyboard-letterkey" ng-repeat="key in row4Keys" ng-click="typeLetter(key)">
             {{key}}
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:7.88em;">↑</div>

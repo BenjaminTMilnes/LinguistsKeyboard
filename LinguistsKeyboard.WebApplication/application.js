@@ -49,19 +49,39 @@ class Keyboard {
         this.row4Keys = [];
 
         for (var i = 0; i < 12; i++) {
-            this.row1Keys.push(new Key(this.lowerShift[i], this.upperShift[i], this.alternateLowerShift[i], this.alternateUpperShift[i]))
+            this.row1Keys.push(this.getKey(i))
         }
 
         for (var i = 12; i < 24; i++) {
-            this.row2Keys.push(new Key(this.lowerShift[i], this.upperShift[i], this.alternateLowerShift[i], this.alternateUpperShift[i]))
+            this.row2Keys.push(this.getKey(i))
         }
 
         for (var i = 24; i < 36; i++) {
-            this.row3Keys.push(new Key(this.lowerShift[i], this.upperShift[i], this.alternateLowerShift[i], this.alternateUpperShift[i]))
+            this.row3Keys.push(this.getKey(i))
         }
 
         for (var i = 36; i < 47; i++) {
-            this.row4Keys.push(new Key(this.lowerShift[i], this.upperShift[i], this.alternateLowerShift[i], this.alternateUpperShift[i]))
+            this.row4Keys.push(   this.getKey(i))
+        }
+    }
+
+    getKey(i) {
+        return new Key(this.lowerShift[i], this.upperShift[i], this.alternateLowerShift[i], this.alternateUpperShift[i]);
+    }
+
+    getLetter(forDefault) {
+        var i = -1;
+
+        i = defaultKeyboardLowerShiftRegister.indexOf(forDefault);
+
+        if (i >= 0) {
+            return this.getKey(i);
+        }
+
+        i = defaultKeyboardUpperShiftRegister.indexOf(forDefault);
+
+        if (i >= 0) {
+            return this.getKey(i);
         }
     }
 }
@@ -72,7 +92,7 @@ const defaultKeyboardUpperShiftRegister = "!\"£$%^&*()_+QWERTYUIOP{}ASDFGHJKL:@
 const BLANK = "                                                ";
 
 const defaultKeyboard = new Keyboard(defaultKeyboardLowerShiftRegister, defaultKeyboardUpperShiftRegister, BLANK, BLANK);
-const macron1 = new Keyboard(" | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|ī|ō|p̄| | |ā|s̄|d̄| |ḡ| |j̄|k̄| | | | | |z̄|x̄|c̄|v̄|b̄|n̄|m̄| | | ", " | | | | | | | | | | | |Q̄|W̄|Ē|R̄|T̄|Ȳ|Ū|Ī|Ō|P̄| | |Ā|S̄|D̄| |Ḡ| |J̄|K̄| | | | | |Z̄|X̄|C̄|V̄|B̄|N̄|M̄| | | ", " | | | | | | | | | | | | | |ḗ| | |ȳ́|ū́|ī́|ṓ| | | |ā́| | | | | | | | | | | | | | | | | | | | | | ", " | | | | | | | | | | | | | |Ḗ| | |Ȳ́|Ū́|Ī́|Ṓ| | | |Ā́| | | | | | | | | | | | | | | | | | | | | | ");
+const macron1 = new Keyboard(" | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|ī|ō|p̄| | |ā|s̄|d̄|f\u0304|ḡ|h\u0304|j̄|k̄|l\u0304| | | | |z̄|x̄|c̄|v̄|b̄|n̄|m̄| | | ", " | | | | | | | | | | | |Q̄|W̄|Ē|R̄|T̄|Ȳ|Ū|Ī|Ō|P̄| | |Ā|S̄|D̄|F\u0304|Ḡ|H\u0304|J̄|K̄|L\u0304| | | | |Z̄|X̄|C̄|V̄|B̄|N̄|M̄| | | ", " | | | | | | | | | | | | | |ḗ| | |ȳ́|ū́|ī́|ṓ| | | |ā́| | | | | | | | | | | | | | | | | | | | | | ", " | | | | | | | | | | | | | |Ḗ| | |Ȳ́|Ū́|Ī́|Ṓ| | | |Ā́| | | | | | | | | | | | | | | | | | | | | | ");
 
 
 
@@ -80,6 +100,10 @@ const macron1 = new Keyboard(" | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|�
 application.controller("KeyboardController", ["$scope", function KeyboardController($scope) {
     
     $scope.currentKeyboard = macron1;
+
+    $scope.shiftIsDown = false;
+    $scope.altIsDown = false;
+    $scope.controlIsDown = false;
 
     $scope.typeLetter = function (letter) {
         if ($scope.mainOutput == undefined) {
@@ -89,18 +113,72 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
         $scope.mainOutput += letter.l;
     }
 
+    $scope.backspace = function () {
+        var l = $scope.mainOutput.length;
+
+        if (l > 0) {
+            if (l > 1 && $scope.mainOutput.slice(l - 1) == "\u0304") {
+                $scope.mainOutput = $scope.mainOutput.slice(0, l - 2);
+            }
+            else {
+                $scope.mainOutput = $scope.mainOutput.slice(0, l - 1);
+            }
+        }
+    }
+
     $scope.keyDown = function (event) {
 
-        var i =   defaultKeyboard.lowerShift.indexOf(event.key);
+        var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
         
         if (i >= 0) {
-            var l = $scope.currentKeyboard[i];
-
+            var l = $scope.currentKeyboard.getKey(i);
+            
             $scope.typeLetter(l);
-
             event.preventDefault();
         }
 
+        if (event.code == "Space") {
+            $scope.typeLetter(new Key(" ", " ", " ", " "));
+            event.preventDefault();
+        }
+
+        if (event.code == "Backspace") {
+            $scope.backspace();
+            event.preventDefault();
+        }
+
+        if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
+            $scope.shiftIsDown = true;
+            event.preventDefault();
+        }
+
+        if (event.code == "AltLeft" || event.code == "AltRight") {
+            $scope.altIsDown = true;
+            event.preventDefault();
+        }
+
+        if (event.code == "ControlLeft" || event.code == "ControlRight") {
+            $scope.controlIsDown = true;
+            event.preventDefault();
+        }
+    }
+
+    $scope.keyUp = function (event) {
+
+        if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
+            $scope.shiftIsDown = false;
+            event.preventDefault();
+        }
+
+        if (event.code == "AltLeft" || event.code == "AltRight") {
+            $scope.altIsDown = false;
+            event.preventDefault();
+        }
+
+        if (event.code == "ControlLeft" || event.code == "ControlRight") {
+            $scope.controlIsDown = false;
+            event.preventDefault();
+        }
 
     }
 

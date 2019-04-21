@@ -32,7 +32,8 @@ h1 {
     border-radius: 2px;
     font-size: 20px;
     outline: none;
-}
+         font-family:'Times New Roman';
+ }
 
 .keyboard {
     font-size: 20px;
@@ -68,6 +69,12 @@ h1 {
     .keyboard-letterkey:hover {
         background-color: #F4F4F4;
         border: 1px solid #E4E4E4;
+    }
+
+    .keyboard-keydown{
+        background-color: #F0F0F0;
+        border: 1px solid #E0E0E0;
+
     }
 
 

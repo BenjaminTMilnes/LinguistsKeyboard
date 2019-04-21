@@ -1,13 +1,13 @@
 ﻿
 
-   <textarea class="mainoutput" rows="7" ng-model="mainOutput" ng-keydown="keyDown($event)"></textarea>
+<textarea class="mainoutput" rows="7" ng-model="mainOutput" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)"></textarea>
 
 <div class="keyboard">
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">`</div>
         <div class="keyboard-key keyboard-letterkey" ng-repeat="key in currentKeyboard.row1Keys" ng-click="typeLetter(key)">
             {{key.l}}
-               <span class="keyboard-key-uppershift">{{key.u}}</span>
+            <span class="keyboard-key-uppershift">{{key.u}}</span>
             <span class="keyboard-key-alternatelowershift">{{key.al}}</span>
             <span class="keyboard-key-alternateuppershift">{{key.au}}</span>
         </div>
@@ -34,22 +34,22 @@
         <div class="keyboard-key keyboard-nonletterkey" style="width:2.67em;"></div>
     </div>
     <div class="keyboard-row">
-        <div class="keyboard-key keyboard-nonletterkey" style="width:4em;">↑</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:4em;"  ng-class="(shiftIsDown)? 'keyboard-keydown':''">↑</div>
         <div class="keyboard-key keyboard-letterkey" ng-repeat="key in currentKeyboard.row4Keys" ng-click="typeLetter(key)">
             {{key.l}}
             <span class="keyboard-key-uppershift">{{key.u}}</span>
             <span class="keyboard-key-alternatelowershift">{{key.al}}</span>
             <span class="keyboard-key-alternateuppershift">{{key.au}}</span>
         </div>
-        <div class="keyboard-key keyboard-nonletterkey" style="width:7.88em;">↑</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:7.88em;"  ng-class="(shiftIsDown)? 'keyboard-keydown':''">↑</div>
     </div>
     <div class="keyboard-row">
-        <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">ctrl</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;"  ng-class="(controlIsDown)? 'keyboard-keydown':''">ctrl</div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">fn</div>
-        <div class="keyboard-key keyboard-nonletterkey" style="width:4em;">alt</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:4em;"  ng-class="(altIsDown)? 'keyboard-keydown':''">alt</div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:27.7em;"></div>
-        <div class="keyboard-key keyboard-nonletterkey" style="width:4.67em;">alt gr</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:4.67em;"  ng-class="(altIsDown)? 'keyboard-keydown':''">alt gr</div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">fn</div>
-        <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">ctrl</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;"  ng-class="(controlIsDown)? 'keyboard-keydown':''">ctrl</div>
     </div>
 </div>

@@ -36,8 +36,8 @@ class Key {
 
 
 class Keyboard {
-    constructor( lowerShift, upperShift, alternateLowerShift, alternateUpperShift) {
-        this.name = "";
+    constructor(name,   lowerShift, upperShift, alternateLowerShift, alternateUpperShift) {
+        this.name = name;
         this.lowerShift =   lowerShift.split("|");
         this.upperShift = upperShift.split("|");
         this.alternateLowerShift = alternateLowerShift.split("|");
@@ -65,8 +65,29 @@ class Keyboard {
         }
     }
 
+    get l() {
+        return this.lowerShift;
+    }
+
+    get u() {
+        return this.upperShift;
+    }
+
+    get al() {
+        return this.alternateLowerShift;
+    }
+
+    get au() {
+        return this.alternateUpperShift;
+    }
+
     getKey(i) {
-        return new Key(this.lowerShift[i], this.upperShift[i], this.alternateLowerShift[i], this.alternateUpperShift[i]);
+        if (this.l[i] == " " && this.u[i] == " " && this.al[i] == " " && this.au[i] == " ") {
+            return new Key(defaultKeyboardLowerShiftRegister[i], defaultKeyboardUpperShiftRegister[i], "", "");
+        }
+        else {
+            return new Key(this.l[i], this.u[i], this.al[i], this.au[i]);
+        }
     }
 
     getLetter(forDefault) {
@@ -88,11 +109,11 @@ class Keyboard {
 
 
 const defaultKeyboardLowerShiftRegister = "1234567890-=qwertyuiop[]asdfghjkl;'#\\zxcvbnm,./";
-const defaultKeyboardUpperShiftRegister = "!\"£$%^&*()_+QWERTYUIOP{}ASDFGHJKL:@~|ZXCVBNM<>?";
+const defaultKeyboardUpperShiftRegister = "!\"£$%^&*()_+QWERTYUIOP{}ASDFGHJKL:@~ ZXCVBNM<>?";
 const BLANK = "                                                ";
 
-const defaultKeyboard = new Keyboard(defaultKeyboardLowerShiftRegister, defaultKeyboardUpperShiftRegister, BLANK, BLANK);
-const macron1 = new Keyboard(" | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|ī|ō|p̄| | |ā|s̄|d̄|f\u0304|ḡ|h\u0304|j̄|k̄|l\u0304| | | | |z̄|x̄|c̄|v̄|b̄|n̄|m̄| | | ", " | | | | | | | | | | | |Q̄|W̄|Ē|R̄|T̄|Ȳ|Ū|Ī|Ō|P̄| | |Ā|S̄|D̄|F\u0304|Ḡ|H\u0304|J̄|K̄|L\u0304| | | | |Z̄|X̄|C̄|V̄|B̄|N̄|M̄| | | ", " | | | | | | | | | | | | | |ḗ| | |ȳ́|ū́|ī́|ṓ| | | |ā́| | | | | | | | | | | | | | | | | | | | | | ", " | | | | | | | | | | | | | |Ḗ| | |Ȳ́|Ū́|Ī́|Ṓ| | | |Ā́| | | | | | | | | | | | | | | | | | | | | | ");
+const defaultKeyboard = new Keyboard("English (UK)", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), BLANK.split("").join("|"), BLANK.split("").join("|"));
+const macron1 = new Keyboard("English (UK) + Macrons",  " | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|ī|ō|p̄| | |ā|s̄|d̄|f\u0304|ḡ|h\u0304|j̄|k̄|l\u0304| | | | |z̄|x̄|c̄|v̄|b̄|n̄|m̄| | | ", " | | | | | | | | | | | |Q̄|W̄|Ē|R̄|T̄|Ȳ|Ū|Ī|Ō|P̄| | |Ā|S̄|D̄|F\u0304|Ḡ|H\u0304|J̄|K̄|L\u0304| | | | |Z̄|X̄|C̄|V̄|B̄|N̄|M̄| | | ", " | | | | | | | | | | | | | |ḗ| | |ȳ́|ū́|ī́|ṓ| | | |ā́| | | | | | | | | | | | | | | | | | | | | | ", " | | | | | | | | | | | | | |Ḗ| | |Ȳ́|Ū́|Ī́|Ṓ| | | |Ā́| | | | | | | | | | | | | | | | | | | | | | ");
 
 
 
@@ -100,10 +121,15 @@ const macron1 = new Keyboard(" | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|�
 application.controller("KeyboardController", ["$scope", function KeyboardController($scope) {
     
     $scope.currentKeyboard = macron1;
+    $scope.availableKeyboards = [defaultKeyboard, macron1];
 
     $scope.shiftIsDown = false;
     $scope.altIsDown = false;
     $scope.controlIsDown = false;
+
+    $scope.setKeyboard = function (keyboard) {
+        $scope.currentKeyboard = keyboard;
+    }
 
     $scope.typeLetter = function (letter) {
         if ($scope.mainOutput == undefined) {

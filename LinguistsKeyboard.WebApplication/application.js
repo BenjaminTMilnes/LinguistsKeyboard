@@ -107,21 +107,40 @@ class Keyboard {
     }
 }
 
+function isAnyOneOf(characters, character) {
+    return (characters.split("").filter(c => c == character).length > 0);
+}
+
+function applyDiacritic(set, diacritic) {
+   return   set.split("").map(c => (isAnyOneOf(lowercaseEnglishLetters + uppercaseEnglishLetters, c)) ? c + diacritic : c).join("|");
+}
+
+
+class DiacriticModifierKeyboard  extends Keyboard{
+    constructor(name, diacritic) {
+        super(name, applyDiacritic(defaultKeyboardLowerShiftRegister, diacritic), applyDiacritic(defaultKeyboardUpperShiftRegister, diacritic), BLANK.split("").join("|"), BLANK.split("").join("|"));
+ }
+}
+
 
 const defaultKeyboardLowerShiftRegister = "1234567890-=qwertyuiop[]asdfghjkl;'#\\zxcvbnm,./";
 const defaultKeyboardUpperShiftRegister = "!\"£$%^&*()_+QWERTYUIOP{}ASDFGHJKL:@~ ZXCVBNM<>?";
 const BLANK = "                                                ";
 
+const lowercaseEnglishLetters = "qwertyuiopasdfghjklzxcvbnm";
+const uppercaseEnglishLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
+
 const defaultKeyboard = new Keyboard("English (UK)", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), BLANK.split("").join("|"), BLANK.split("").join("|"));
-const macron1 = new Keyboard("English (UK) + Macrons",  " | | | | | | | | | | | |q̄|w̄|ē|r̄|t̄|ȳ|ū|ī|ō|p̄| | |ā|s̄|d̄|f\u0304|ḡ|h\u0304|j̄|k̄|l\u0304| | | | |z̄|x̄|c̄|v̄|b̄|n̄|m̄| | | ", " | | | | | | | | | | | |Q̄|W̄|Ē|R̄|T̄|Ȳ|Ū|Ī|Ō|P̄| | |Ā|S̄|D̄|F\u0304|Ḡ|H\u0304|J̄|K̄|L\u0304| | | | |Z̄|X̄|C̄|V̄|B̄|N̄|M̄| | | ", " | | | | | | | | | | | | | |ḗ| | |ȳ́|ū́|ī́|ṓ| | | |ā́| | | | | | | | | | | | | | | | | | | | | | ", " | | | | | | | | | | | | | |Ḗ| | |Ȳ́|Ū́|Ī́|Ṓ| | | |Ā́| | | | | | | | | | | | | | | | | | | | | | ");
+const englishMacron =   new DiacriticModifierKeyboard("English (UK) + Macrons", "\u0304");
+const englishAcute =   new DiacriticModifierKeyboard("English (UK) + Acute Accents", "\u0301");
 
 
 
 
 application.controller("KeyboardController", ["$scope", function KeyboardController($scope) {
     
-    $scope.currentKeyboard = macron1;
-    $scope.availableKeyboards = [defaultKeyboard, macron1];
+    $scope.currentKeyboard = englishMacron;
+    $scope.availableKeyboards = [defaultKeyboard, englishAcute, englishMacron];
 
     $scope.shiftIsDown = false;
     $scope.altIsDown = false;
@@ -132,7 +151,7 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
     }
 
     $scope.typeLetter = function (letter) {
-        if ($scope.mainOutput == undefined) {
+        if ($scope.mainOutput == undefined || $scope.mainOutput == null) {
             $scope.mainOutput = "";
         }
 

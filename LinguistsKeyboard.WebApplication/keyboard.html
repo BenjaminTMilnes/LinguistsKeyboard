@@ -4,47 +4,47 @@
 
 <div class="keyboard">
     <div class="keyboard-row">     
-        <div class="keyboard-key" ng-repeat="keyboard in availableKeyboards" ng-click="setKeyboard(keyboard)">
+        <div class="keyboard-key" ng-repeat="keyboard in availableKeyboards" ng-click="setKeyboard(keyboard)"  ng-class="($index == $parent.currentKeyboardIndex)? 'keyboard-keydown':''">
           {{keyboard.name}}         
         </div>     
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;">`</div>
         <div class="keyboard-key keyboard-letterkey" ng-repeat="key in currentKeyboard.row1Keys" ng-click="typeLetter(key)">
-            {{key.l}}
-            <span class="keyboard-key-uppershift">{{key.u}}</span>
-            <span class="keyboard-key-alternatelowershift">{{key.al}}</span>
-            <span class="keyboard-key-alternateuppershift">{{key.au}}</span>
+            <span class="keyboard-key-lowershift" ng-class="(!shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.l}}</span>
+            <span class="keyboard-key-uppershift" ng-class="(shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.u}}</span>
+            <span class="keyboard-key-alternatelowershift" ng-class="(!shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.al}}</span>
+            <span class="keyboard-key-alternateuppershift" ng-class="(shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.au}}</span>
         </div>
-        <div class="keyboard-key keyboard-nonletterkey" style="width:5em;">←</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:5em;" ng-class="(backspaceIsDown)? 'keyboard-keydown':''">←</div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:5em;">↹</div>
         <div class="keyboard-key keyboard-letterkey" ng-repeat="key in currentKeyboard.row2Keys" ng-click="typeLetter(key)">
-            {{key.l}}
-            <span class="keyboard-key-uppershift">{{key.u}}</span>
-            <span class="keyboard-key-alternatelowershift">{{key.al}}</span>
-            <span class="keyboard-key-alternateuppershift">{{key.au}}</span>
+            <span class="keyboard-key-lowershift" ng-class="(!shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.l}}</span>
+            <span class="keyboard-key-uppershift" ng-class="(shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.u}}</span>
+            <span class="keyboard-key-alternatelowershift" ng-class="(!shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.al}}</span>
+            <span class="keyboard-key-alternateuppershift" ng-class="(shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.au}}</span>
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:3.33em;"></div>
     </div>
     <div class="keyboard-row">
-        <div class="keyboard-key keyboard-nonletterkey" style="width:5.67em;">caps</div>
+        <div class="keyboard-key keyboard-nonletterkey" style="width:5.67em;"  ng-class="(capsLockIsOn)? 'keyboard-keydown':''">caps</div>
         <div class="keyboard-key keyboard-letterkey" ng-repeat="key in currentKeyboard.row3Keys" ng-click="typeLetter(key)">
-            {{key.l}}
-            <span class="keyboard-key-uppershift">{{key.u}}</span>
-            <span class="keyboard-key-alternatelowershift">{{key.al}}</span>
-            <span class="keyboard-key-alternateuppershift">{{key.au}}</span>
+            <span class="keyboard-key-lowershift" ng-class="(!shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.l}}</span>
+            <span class="keyboard-key-uppershift" ng-class="(shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.u}}</span>
+            <span class="keyboard-key-alternatelowershift" ng-class="(!shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.al}}</span>
+            <span class="keyboard-key-alternateuppershift" ng-class="(shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.au}}</span>
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:2.67em;"></div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:4em;"  ng-class="(shiftIsDown)? 'keyboard-keydown':''">↑</div>
         <div class="keyboard-key keyboard-letterkey" ng-repeat="key in currentKeyboard.row4Keys" ng-click="typeLetter(key)">
-            {{key.l}}
-            <span class="keyboard-key-uppershift">{{key.u}}</span>
-            <span class="keyboard-key-alternatelowershift">{{key.al}}</span>
-            <span class="keyboard-key-alternateuppershift">{{key.au}}</span>
+            <span class="keyboard-key-lowershift" ng-class="(!shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.l}}</span>
+            <span class="keyboard-key-uppershift" ng-class="(shiftIsDown && !altIsDown) ?'' : 'greyedout'">{{key.u}}</span>
+            <span class="keyboard-key-alternatelowershift" ng-class="(!shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.al}}</span>
+            <span class="keyboard-key-alternateuppershift" ng-class="(shiftIsDown && altIsDown) ?'' : 'greyedout'">{{key.au}}</span>
         </div>
         <div class="keyboard-key keyboard-nonletterkey" style="width:7.88em;"  ng-class="(shiftIsDown)? 'keyboard-keydown':''">↑</div>
     </div>

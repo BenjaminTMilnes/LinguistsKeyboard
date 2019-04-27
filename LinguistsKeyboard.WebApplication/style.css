@@ -103,3 +103,7 @@ h1 {
     right: 0em;
     height: 1.15em;
 }
+
+.greyedout{
+    color:#D0D0D0;
+}

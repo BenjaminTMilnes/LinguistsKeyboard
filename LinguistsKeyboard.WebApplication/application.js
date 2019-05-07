@@ -135,6 +135,7 @@ const englishMacron =   new DiacriticModifierKeyboard("English + Macrons", "\u03
 const englishAcute = new DiacriticModifierKeyboard("English + Acute Accents", "\u0301");
 const englishDiacritics = new Keyboard("English + Diacritics", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
 const greek = new Keyboard("Greek", "1234567890-=χωερτυ ιοπ[]ασδφθη κλ;'#\\ζξγψβνμ,./".split("").join("|"), "!\"£$%^&*()_+ΧΩΕΡΤΥ ΙΟΠ{}ΑΣΔΦΘΗ ΚΛ:@~ ΖΞΓΨΒΝΜ<>?".split("").join("|"), "\u0301\u0308                       ς                       ".split("").join("|"), BLANK.split("").join("|"));
+const mathematics1 = new Keyboard("Mathematics 1", "1234567890\u2212\u002bqwertyuiop()asdfghjkl;'#\\zxcvbnm,./".split("").join("|"), "!\"£$%^&\u00d7  _+QWERTYUIOP{}ASDFGHJKL:@~ ZXCVBNM<>?".split("").join("|"), "            χωερτυ ιοπ[]ασδφθη κλ    ζξγψβνμ   ".split("").join("|"), "\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u2070  ΧΩΕΡΤΥ ΙΟΠ  ΑΣΔΦΘΗ ΚΛ    ΖΞΓΨΒΝΜ   ".split("").join("|"))
 
 
 
@@ -143,7 +144,7 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
     
     $scope.currentKeyboard = defaultKeyboard;
     $scope.currentKeyboardIndex = 0;
-    $scope.availableKeyboards = [defaultKeyboard, englishDiacritics, greek];
+    $scope.availableKeyboards = [defaultKeyboard, englishDiacritics, greek, mathematics1];
 
     $scope.shiftIsDown = false;
     $scope.altIsDown = false;

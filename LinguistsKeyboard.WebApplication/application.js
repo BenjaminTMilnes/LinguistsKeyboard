@@ -134,7 +134,7 @@ const defaultKeyboard = new Keyboard("English", defaultKeyboardLowerShiftRegiste
 const englishMacron =   new DiacriticModifierKeyboard("English + Macrons", "\u0304");
 const englishAcute = new DiacriticModifierKeyboard("English + Acute Accents", "\u0301");
 const englishDiacritics = new Keyboard("English + Diacritics", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
-const greek = new Keyboard("Greek", "1234567890-=χωερτυ ιοπ[]ασδφθη κλ;'#\\ζξγψβνμ,./".split("").join("|"), "!\"£$%^&*()_+ΧΩΕΡΤΥ ΙΟΠ{}ΑΣΔΦΘΗ ΚΛ:@~ ΖΞΓΨΒΝΜ<>?".split("").join("|"), "\u0301\u0308                        ς                      ".split("").join("|"), BLANK.split("").join("|"));
+const greek = new Keyboard("Greek", "1234567890-=χωερτυ ιοπ[]ασδφθη κλ;'#\\ζξγψβνμ,./".split("").join("|"), "!\"£$%^&*()_+ΧΩΕΡΤΥ ΙΟΠ{}ΑΣΔΦΘΗ ΚΛ:@~ ΖΞΓΨΒΝΜ<>?".split("").join("|"), "\u0301\u0308                       ς                       ".split("").join("|"), BLANK.split("").join("|"));
 
 
 
@@ -150,6 +150,8 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
     $scope.controlIsDown = false;
     $scope.capsLockIsOn = false;
     $scope.backspaceIsDown = false;
+    $scope.spaceIsDown = false;
+    $scope.tabIsDown = false;
 
     $scope.setKeyboard = function (keyboard) {
         $scope.currentKeyboard = keyboard;
@@ -244,11 +246,13 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
         }
 
         if (event.code == "Space") {
+            $scope.spaceIsDown = true;
             $scope.typeLetter(" ");
             event.preventDefault();
         }
 
         if (event.code == "Tab") {
+            $scope.tabIsDown = true;
             $scope.typeLetter("\t");
             event.preventDefault();
         }
@@ -291,6 +295,16 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
     }
 
     $scope.keyUp = function (event) {
+
+        if (event.code == "Space") {
+            $scope.spaceIsDown = false;
+            event.preventDefault();
+        }
+
+        if (event.code == "Tab") {
+            $scope.tabIsDown = false;
+            event.preventDefault();
+        }
 
         if (event.code == "Backspace") {
             $scope.backspaceIsDown = false;

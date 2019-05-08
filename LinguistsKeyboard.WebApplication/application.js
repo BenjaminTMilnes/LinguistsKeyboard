@@ -83,7 +83,8 @@ class Keyboard {
 
     getKey(i) {
         if (this.l[i] == " " && this.u[i] == " " && this.al[i] == " " && this.au[i] == " ") {
-            return new Key(defaultKeyboardLowerShiftRegister[i], defaultKeyboardUpperShiftRegister[i], "", "");
+            //   return new Key(defaultKeyboardLowerShiftRegister[i], defaultKeyboardUpperShiftRegister[i], "", "");
+            return new Key(this.l[i], this.u[i], this.al[i], this.au[i]);
         }
         else {
             return new Key(this.l[i], this.u[i], this.al[i], this.au[i]);
@@ -138,6 +139,8 @@ const englishAcute = new DiacriticModifierKeyboard("English + Acute Accents", "\
 
 const englishDiacritics = new Keyboard("English + Diacritics", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
 
+const OldEnglish = new Keyboard("Old English", "1234567890- qwertyuiop\u0304\u0307asdfgh kl;‘’ zxc bnm,.?".split("").join("|"), "      &*()  QWERTYUIOP  ASDFGH KL:“” ZXC BNM\\/!".split("").join("|"), "             ƿ  þ       æ ð                     ".split("").join("|"), "             Ƿ  Þ       Æ Ð                     ".split("").join("|"));
+
 const greek = new Keyboard("Greek", "1234567890-=χωερτυ ιοπ[]ασδφθη κλ;'#\\ζξγψβνμ,./".split("").join("|"), "!\"£$%^&*()_+ΧΩΕΡΤΥ ΙΟΠ{}ΑΣΔΦΘΗ ΚΛ:@~ ΖΞΓΨΒΝΜ<>?".split("").join("|"), "\u0301\u0308                       ς                       ".split("").join("|"), BLANK.split("").join("|"));
 
 const mathematics1 = new Keyboard("Mathematics 1", "1234567890\u2212\u002bqwertyuiop()asdfghjkl;'#\\zxcvbnm,./".split("").join("|"), "!\"£$%^&\u00d7  _+QWERTYUIOP{}ASDFGHJKL:@~ ZXCVBNM<>?".split("").join("|"), "\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089\u2080\u208b\u208aχωερτυ ιοπ[]ασδφθη κλ    ζξγψβνμ\u226a\u226b ".split("").join("|"), "\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u2070\u207b\u207aΧΩΕΡΤΥ ΙΟΠ  ΑΣΔΦΘΗ ΚΛ    ΖΞΓΨΒΝΜ\u2264\u2265 ".split("").join("|"));
@@ -150,7 +153,7 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
 
     $scope.currentKeyboard = defaultKeyboard;
     $scope.currentKeyboardIndex = 0;
-    $scope.availableKeyboards = [defaultKeyboard, englishDiacritics, greek, mathematics1, T1German];
+    $scope.availableKeyboards = [defaultKeyboard, englishDiacritics, greek, mathematics1, T1German, OldEnglish];
 
     $scope.shiftIsDown = false;
     $scope.altIsDown = false;

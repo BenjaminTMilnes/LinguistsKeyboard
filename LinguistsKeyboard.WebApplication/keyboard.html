@@ -2,6 +2,8 @@
 
 <textarea class="mainoutput" rows="7" ng-model="mainOutput" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)"></textarea>
 
+<div class="links"><a href="/#/settings" title="Settings">Settings</a></div>
+
 <div class="keyboard">
     <div class="keyboard-row">     
         <div class="keyboard-key" ng-repeat="keyboard in availableKeyboards" ng-click="setKeyboard(keyboard)"  ng-class="($index == $parent.currentKeyboardIndex)? 'keyboard-keydown':''">

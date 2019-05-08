@@ -24,6 +24,13 @@ h1 {
     margin: 70px 0px;
 }
 
+th, td{
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+
+}
+
 .mainoutput {
     width: 100%;
     box-sizing: border-box;
@@ -34,6 +41,12 @@ h1 {
     outline: none;
          font-family:'Times New Roman';
  }
+
+.links{
+       margin:20px 0px;
+                     text-align:center;
+
+}
 
 .keyboard {
     font-size: 20px;

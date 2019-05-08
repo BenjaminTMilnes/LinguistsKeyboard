@@ -139,6 +139,8 @@ const defaultKeyboard = new Keyboard(  "English (UK)", "English", "english1", tr
 
 const englishDiacritics = new Keyboard("English (UK) with Diacritics", "English + Diacritics", "english2", true, defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
 
+const EnglishBetter = new Keyboard("English (Better)", "English (Better)", "english3", true, "1234567890-\u2013qwertyuiop()asdfghjkl’‘’:zxcvbnm,.?".split("").join("|"), "#*      ~% \u2014QWERTYUIOP[]ASDFGHJKL “” ZXCVBNM; !".split("").join("|"), "\u0301\u0300\u0302\u030C\u0304\u0307\u0308\u0306\u0303    ₩€ ₮¥  œ₽{}æ$ ₣    £           \\/ ".split("").join("|"), "\u030b\u030f            &     Œ   Æ                       ".split("").join("|"));
+
 const OldEnglish = new Keyboard("Old English", "Old English", "oldenglish1", false, "1234567890- qwertyuiop\u0304\u0307asdfgh kl;‘’ zxc bnm,.?".split("").join("|"), "      &*()  QWERTYUIOP  ASDFGH KL:“” ZXC BNM\\/!".split("").join("|"), "             ƿ  þ       æ ð                     ".split("").join("|"), "             Ƿ  Þ       Æ Ð                     ".split("").join("|"));
 
 const greek = new Keyboard( "Greek (English-style Layout)", "Greek", "greek1", true,  "1234567890-=χωερτυ ιοπ[]ασδφθη κλ;'#\\ζξγψβνμ,./".split("").join("|"), "!\"£$%^&*()_+ΧΩΕΡΤΥ ΙΟΠ{}ΑΣΔΦΘΗ ΚΛ:@~ ΖΞΓΨΒΝΜ<>?".split("").join("|"), "\u0301\u0308                       ς                       ".split("").join("|"), BLANK.split("").join("|"));
@@ -147,7 +149,7 @@ const mathematics1 = new Keyboard(  "Mathematics Set 1", "Mathematics 1", "mathe
 
 const T1German = new Keyboard("German (T1)", "German (T1)", "german1", false, "1234567890ß qwertzuiopü+asdfghjklöä#<yxcvbnm,.-".split("").join("|"), "!\"§$%&/()=? QWERTZUIOPÜ*ASDFGHJKLÖÄ'>YXCVBNM;:_".split("").join("|"), " \u00b2\u00b3   {[]}\\ @ €        ~                   μ    ".split("").join("|"), "                                                ".split("").join("|"));
 
-const Keyboards = [ defaultKeyboard, englishDiacritics, OldEnglish, T1German, greek, mathematics1];
+const Keyboards = [ defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, greek, mathematics1];
 
 
 
@@ -267,6 +269,11 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
         if (event.code == "Space") {
             $scope.spaceIsDown = true;
             $scope.typeLetter(" ");
+            event.preventDefault();
+        }
+
+        if (event.code == "Enter") {
+            $scope.typeLetter("\n");
             event.preventDefault();
         }
 

@@ -131,7 +131,9 @@ const lowercaseEnglishLetters = "qwertyuiopasdfghjklzxcvbnm";
 const uppercaseEnglishLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
 const defaultKeyboard = new Keyboard("English", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), BLANK.split("").join("|"), BLANK.split("").join("|"));
+
 const englishMacron = new DiacriticModifierKeyboard("English + Macrons", "\u0304");
+
 const englishAcute = new DiacriticModifierKeyboard("English + Acute Accents", "\u0301");
 
 const englishDiacritics = new Keyboard("English + Diacritics", defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
@@ -210,6 +212,18 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
     }
 
     $scope.keyDown = function (event) {
+
+        if (event.altKey == false) {
+            $scope.altIsDown = false;
+        }
+
+        if (event.shiftKey == false) {
+            $scope.shiftIsDown = false;
+        }
+
+        if (event.ctrlKey == false) {
+            $scope.controlIsDown = false;
+        }
 
         if (!$scope.controlIsDown && event.code != "Space") {
             var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);

@@ -4,7 +4,7 @@
     <tr>
            <th>Keyboards</th>
         <td>
-            <div ng-repeat="keyboard in selectedKeyboards">
+            <div ng-repeat="keyboard in keyboards">
                 <input type="checkbox" ng-model="keyboard.isSelected" id="keyboard-{{keyboard.reference}}" />
                        <label for="keyboard-{{keyboard.reference}}">{{keyboard.name}}</label>
             </div>

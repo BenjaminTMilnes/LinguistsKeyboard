@@ -6,8 +6,8 @@
 
 <div class="keyboard">
     <div class="keyboard-row">     
-        <div class="keyboard-key" ng-repeat="keyboard in availableKeyboards" ng-click="setKeyboard(keyboard)"  ng-class="($index == $parent.currentKeyboardIndex)? 'keyboard-keydown':''">
-          {{keyboard.name}}         
+        <div class="keyboard-key" ng-repeat="keyboard in availableKeyboards" ng-click="setKeyboard(keyboard)"  ng-class="($index == $parent.currentKeyboardIndex)? 'keyboard-keydown':''"  title="{{keyboard.name}}">
+          {{keyboard.abbreviatedName}}         
         </div>     
     </div>
     <div class="keyboard-row">

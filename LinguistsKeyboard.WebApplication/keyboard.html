@@ -4,6 +4,8 @@
 
 <div class="links"><a href="/#/settings" title="Settings">Settings</a> | <a  href="/#/credits" title="Credits">Credits</a></div>
 
+<p>Press <code>Ctrl</code> and then a number to select a keyboard, or press <code>Ctrl</code> and then an arrow to move between them.</p>
+
 <div class="keyboard">
     <div class="keyboard-row">     
         <div class="keyboard-key" ng-repeat="keyboard in availableKeyboards" ng-click="setKeyboard(keyboard)"  ng-class="($index == $parent.currentKeyboardIndex)? 'keyboard-keydown':''"  title="{{keyboard.name}}">

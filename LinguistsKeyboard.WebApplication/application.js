@@ -192,12 +192,25 @@ class Settings {
     }
 
     get selectedKeyboards() {
-        return this._selectedKeyboards;
+        var sk = Keyboards;
+
+        sk.forEach(k => {
+            if (this._selectedKeyboards.filter(a => a == k.reference).length > 0) {
+                k.isSelected = true;
+            }
+            else {
+                k.isSelected = false;
+            }
+        });
+
+        return sk;
     }
 
     set selectedKeyboards(value) {
-        if (value != this._selectedKeyboards) {
-            this._selectedKeyboards = value;
+        var sk = value.filter(k => k.isSelected).map(k => k.reference);
+
+        if (sk != this._selectedKeyboards) {
+            this._selectedKeyboards = sk;
 
             this.saveToLocalStorage();
         }
@@ -217,7 +230,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
 
     $scope.currentKeyboard = defaultKeyboard;
     $scope.currentKeyboardIndex = 0;
-    $scope.availableKeyboards =       Keyboards.filter(k => k.isSelected);
+    $scope.availableKeyboards =      settings.selectedKeyboards.filter(k => k.isSelected);
 
     $scope.shiftIsDown = false;
     $scope.altIsDown = false;
@@ -416,7 +429,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
 
     }
 
-
+    $scope.selectKeyboard(0);
 
 }]);
 
@@ -425,29 +438,10 @@ application.controller("SettingsController", ["$scope", "settings", function Set
 
     $scope.settings = settings;
 
-    $scope.keyboards = Keyboards;
-
-    $scope.saveSettings = function () {
-        $scope.settings.selectedKeyboards = $scope.keyboards.filter(k => k.isSelected).map(k => k.reference);
-    }
-
-    $scope.loadSettings = function () {
-        console.log($scope.settings);
-
-        $scope.keyboards.forEach(k => {
-            if ($scope.settings.selectedKeyboards.filter(sk => sk == k.reference).length > 0) {
-                k.isSelected = true;
-            }
-            else {
-                k.isSelected = false;
-            }
-        });
-    }
-
+    $scope.keyboards = settings.selectedKeyboards;
+    
     $scope.$watch("keyboards", function (newValue, oldValue) {
-        $scope.saveSettings();
+        $scope.settings.selectedKeyboards = $scope.keyboards;
     }, true);
-
-    $scope.loadSettings();
-
+    
 }]);

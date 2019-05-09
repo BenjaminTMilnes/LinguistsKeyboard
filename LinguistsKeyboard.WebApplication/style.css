@@ -22,6 +22,7 @@ h1 {
     text-transform: uppercase;
     text-align: center;
     margin: 70px 0px;
+       position:relative;
 }
 
 h2 {
@@ -59,6 +60,50 @@ a {
 
     a:hover {
         text-decoration: underline;
+    }
+
+    
+.donatebutton {
+        display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: #f98816;
+    color: #FFFFFF;
+    border-radius: 2px;
+    font-size: 17px;
+    font-weight: normal;
+    padding: 7px 17px;
+    text-transform: none;
+    user-select: none;
+          margin-top:-4px;
+}
+
+    .donatebutton:hover {
+        background-color: #fca44b;
+    }
+
+    .donatebutton a {
+        color: inherit;
+        padding: 0px;
+        display: inline;
+    }
+
+    
+
+.copybutton {
+        font-size: 17px;
+        padding: 7px 17px;
+    border-radius: 2px;
+    color: #FFFFFF;
+    background-color: #105ecc;
+    border: none;
+    cursor: pointer;
+                   margin-left:4px;
+}
+
+    .copybutton:hover {
+        background-color: #2f7ae2;
     }
 
 .mainoutput {

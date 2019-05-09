@@ -426,7 +426,12 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.controlIsDown = false;
             event.preventDefault();
         }
+    }
 
+    $scope.clearMainOutput = function () {
+        $scope.mainOutput = "";
+
+        $scope.settings.mainOutput = $scope.mainOutput;
     }
 
     $scope.selectKeyboard(0);

@@ -156,7 +156,7 @@ a {
 }
 
     .keyboard-key:hover {
-        border: 1px solid #D0D0D0;
+        border: 1px solid #C0C0C0;
     }
 
 .keyboard-letterkey {
@@ -165,8 +165,8 @@ a {
 
 .keyboard-keydown {
     background-color: #F4F4F4;
-    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F1F1F1);
-    border: 1px solid #E8E8E8;
+    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
+    border: 1px solid #E1E1E1;
 }
 
 

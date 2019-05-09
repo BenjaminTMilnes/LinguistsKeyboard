@@ -1,8 +1,8 @@
 ﻿
 
-<textarea class="mainoutput" rows="7" ng-model="mainOutput" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)"></textarea>
+<textarea id="mainOutput" class="mainoutput" rows="7" ng-model="mainOutput" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)"></textarea>
 
-<div style="text-align:right;"><button class="copybutton" ng-click="clearMainOutput()">Clear</button><button class="copybutton">Copy</button></div>
+<div style="text-align:right;"><button class="copybutton" ng-click="clearMainOutput()">Clear</button><button class="copybutton" data-clipboard-target="#mainOutput">Copy</button></div>
 
 <div class="links"><a href="/#/settings" title="Settings">Settings</a> | <a href="/#/credits" title="Credits">Credits</a></div>
 

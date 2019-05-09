@@ -192,19 +192,17 @@ class Settings {
     }
 
     get selectedKeyboards() {
-        var sk = Keyboards;
-
-        sk.forEach(k => {
-            if (this._selectedKeyboards.filter(a => a == k.reference).length > 0) {
+       Keyboards.forEach(k => {
+            if (this._selectedKeyboards.filter(sk => sk == k.reference).length > 0) {
                 k.isSelected = true;
             }
             else {
                 k.isSelected = false;
             }
-        });
+       });
 
-        return sk;
-    }
+       return Keyboards;
+         }
 
     set selectedKeyboards(value) {
         var sk = value.filter(k => k.isSelected).map(k => k.reference);
@@ -228,14 +226,20 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
 
     $scope.mainOutput = settings.mainOutput;
 
-    $scope.currentKeyboard = defaultKeyboard;
+    $scope.currentKeyboard =   null;
     $scope.currentKeyboardIndex = 0;
-    $scope.availableKeyboards =      settings.selectedKeyboards.filter(k => k.isSelected);
+    $scope.availableKeyboards = settings.selectedKeyboards.filter(k => k.isSelected);
+
+    if ($scope.availableKeyboards.length == 0) {
+        $scope.availableKeyboards = [defaultKeyboard];
+    }
 
     $scope.shiftIsDown = false;
     $scope.altIsDown = false;
     $scope.controlIsDown = false;
+
     $scope.capsLockIsOn = false;
+
     $scope.backspaceIsDown = false;
     $scope.spaceIsDown = false;
     $scope.tabIsDown = false;
@@ -255,17 +259,11 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     }
 
     $scope.selectNextKeyboard = function () {
-        $scope.currentKeyboardIndex += 1;
-        $scope.limitKeyboardIndex();
-
-        $scope.currentKeyboard = $scope.availableKeyboards[$scope.currentKeyboardIndex];
+        $scope.selectKeyboard($scope.currentKeyboardIndex + 1);
     }
 
     $scope.selectPreviousKeyboard = function () {
-        $scope.currentKeyboardIndex -= 1;
-        $scope.limitKeyboardIndex();
-
-        $scope.currentKeyboard = $scope.availableKeyboards[$scope.currentKeyboardIndex];
+        $scope.selectKeyboard($scope.currentKeyboardIndex - 1);
     }
 
     $scope.selectKeyboard = function (index) {
@@ -435,6 +433,8 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     }
 
     $scope.selectKeyboard(0);
+
+    new ClipboardJS(".copybutton");
 
 }]);
 

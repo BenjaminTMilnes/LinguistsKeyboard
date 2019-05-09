@@ -156,7 +156,64 @@ const Keyboards = [ defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglis
 
 
 
-application.controller("KeyboardController", ["$scope", function KeyboardController($scope) {
+class Settings {
+    constructor() {
+        this._mainOutput = "";
+        this._selectedKeyboards = [];
+
+        this.loadFromLocalStorage();
+    }
+
+    loadFromLocalStorage() {
+        var hasBeenSet = window.localStorage.getItem("hasBeenSet");
+
+        if (hasBeenSet) {
+            this._mainOutput = window.localStorage.getItem("mainOutput");
+            this._selectedKeyboards = window.localStorage.getItem("selectedKeyboards").split(";");
+        }
+    }
+
+    saveToLocalStorage() {
+        window.localStorage.setItem("hasBeenSet", true);
+        window.localStorage.setItem("mainOutput", this._mainOutput);
+        window.localStorage.setItem("selectedKeyboards", this._selectedKeyboards.join(";"));
+    }
+
+    get mainOutput() {
+        return this._mainOutput;
+    }
+
+    set mainOutput(value) {
+        if (value != this._mainOutput) {
+            this._mainOutput = value;
+
+            this.saveToLocalStorage();
+        }
+    }
+
+    get selectedKeyboards() {
+        return this._selectedKeyboards;
+    }
+
+    set selectedKeyboards(value) {
+        if (value != this._selectedKeyboards) {
+            this._selectedKeyboards = value;
+
+            this.saveToLocalStorage();
+        }
+    }
+}
+
+application.factory("settings", function () {
+    return new Settings();
+});
+
+
+application.controller("KeyboardController", ["$scope", "settings", function KeyboardController($scope, settings) {
+
+    $scope.settings = settings;
+
+    $scope.mainOutput = settings.mainOutput;
 
     $scope.currentKeyboard = defaultKeyboard;
     $scope.currentKeyboardIndex = 0;
@@ -321,6 +378,8 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
             $scope.selectNextKeyboard();
             event.preventDefault();
         }
+
+        $scope.settings.mainOutput = $scope.mainOutput;
     }
 
     $scope.keyUp = function (event) {
@@ -357,13 +416,38 @@ application.controller("KeyboardController", ["$scope", function KeyboardControl
 
     }
 
+
+
 }]);
 
 
-application.controller("SettingsController", ["$scope", function SettingsController($scope) {
+application.controller("SettingsController", ["$scope", "settings", function SettingsController($scope, settings) {
+
+    $scope.settings = settings;
 
     $scope.keyboards = Keyboards;
 
+    $scope.saveSettings = function () {
+        $scope.settings.selectedKeyboards = $scope.keyboards.filter(k => k.isSelected).map(k => k.reference);
+    }
 
+    $scope.loadSettings = function () {
+        console.log($scope.settings);
+
+        $scope.keyboards.forEach(k => {
+            if ($scope.settings.selectedKeyboards.filter(sk => sk == k.reference).length > 0) {
+                k.isSelected = true;
+            }
+            else {
+                k.isSelected = false;
+            }
+        });
+    }
+
+    $scope.$watch("keyboards", function (newValue, oldValue) {
+        $scope.saveSettings();
+    }, true);
+
+    $scope.loadSettings();
 
 }]);

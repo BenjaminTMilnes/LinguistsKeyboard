@@ -37,12 +37,12 @@ class Key {
 
 
 class Keyboard {
-    constructor(name,    abbreviatedName,  reference,  isSelected, lowerShift, upperShift, alternateLowerShift, alternateUpperShift) {
+    constructor(name, abbreviatedName, reference, isSelected, lowerShift, upperShift, alternateLowerShift, alternateUpperShift) {
         this.name = name;
         this.abbreviatedName = abbreviatedName;
         this.reference = reference;
         this.isSelected = isSelected;
-            
+
         this.lowerShift = lowerShift.split("|");
         this.upperShift = upperShift.split("|");
         this.alternateLowerShift = alternateLowerShift.split("|");
@@ -136,11 +136,11 @@ const BLANK = "                                                ";
 const lowercaseEnglishLetters = "qwertyuiopasdfghjklzxcvbnm";
 const uppercaseEnglishLetters = "QWERTYUIOPASDFGHJKLZXCVBNM";
 
-const defaultKeyboard = new Keyboard(  "English (UK)", "English", "english1", true, defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), BLANK.split("").join("|"), BLANK.split("").join("|"));
+const defaultKeyboard = new Keyboard("English (UK)", "English", "english1", true, defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), BLANK.split("").join("|"), BLANK.split("").join("|"));
 
 const englishDiacritics = new Keyboard("English (UK) with Diacritics", "English + Diacritics", "english2", true, defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
 
-const EnglishBetter = new Keyboard("English (Better)", "English (Better)", "english3", true, "1234567890-\u2013qwertyuiop()asdfghjkl’‘’:zxcvbnm,.?".split("").join("|"), "#*{}    ~% \u2014QWERTYUIOP[]ASDFGHJKL “” ZXCVBNM; !".split("").join("|"), "\u0301\u0300\u0302\u030C\u0304\u0307\u0308\u0306\u0303    ₩€ ₮¥  œ₽  æ$ ₣    £      ç    \\/ ".split("").join("|"), "\u030b\u030f⟨⟩          &     Œ   Æ              Ç        ".split("").join("|"));
+const EnglishBetter = new Keyboard("English (Better)", "English (Better)", "english3", true, "1234567890-\u2013qwertyuiop()asdfghjkl’‘’ zxcvbnm,.?".split("").join("|"), "#*{}    ~% \u2014QWERTYUIOP[]ASDFGHJKL “” ZXCVBNM;:!".split("").join("|"), "\u0301\u0300\u0302\u030C\u0304\u0307\u0308\u0306\u0303    ₩€ ₮¥  œ₽  æ$ ₣    £      ç    \\/ ".split("").join("|"), "\u030b\u030f⟨⟩          &     Œ   Æ              Ç        ".split("").join("|"));
 
 const OldEnglish = new Keyboard("Old English", "Old English", "oldenglish1", false, "1234567890- qwertyuiop\u0304\u0307asdfgh kl;‘’ zxc bnm,.?".split("").join("|"), "      &*()  QWERTYUIOP  ASDFGH KL:“” ZXC BNM\\/!".split("").join("|"), "             ƿ  þ       æ ð                     ".split("").join("|"), "             Ƿ  Þ       Æ Ð                     ".split("").join("|"));
 
@@ -152,7 +152,7 @@ const mathematics1 = new Keyboard("Mathematics Set 1", "Mathematics 1", "mathema
 
 const T1German = new Keyboard("German (T1)", "German (T1)", "german1", false, "1234567890ß qwertzuiopü+asdfghjklöä#<yxcvbnm,.-".split("").join("|"), "!\"§$%&/()=? QWERTZUIOPÜ*ASDFGHJKLÖÄ'>YXCVBNM;:_".split("").join("|"), " \u00b2\u00b3   {[]}\\ @ €        ~                   μ    ".split("").join("|"), "                                                ".split("").join("|"));
 
-const Keyboards = [ defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German,  Greek1, Greek2, mathematics1];
+const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, Greek1, Greek2, mathematics1];
 
 
 
@@ -192,17 +192,17 @@ class Settings {
     }
 
     get selectedKeyboards() {
-       Keyboards.forEach(k => {
+        Keyboards.forEach(k => {
             if (this._selectedKeyboards.filter(sk => sk == k.reference).length > 0) {
                 k.isSelected = true;
             }
             else {
                 k.isSelected = false;
             }
-       });
+        });
 
-       return Keyboards;
-         }
+        return Keyboards;
+    }
 
     set selectedKeyboards(value) {
         var sk = value.filter(k => k.isSelected).map(k => k.reference);
@@ -226,7 +226,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
 
     $scope.mainOutput = settings.mainOutput;
 
-    $scope.currentKeyboard =   null;
+    $scope.currentKeyboard = null;
     $scope.currentKeyboardIndex = 0;
     $scope.availableKeyboards = settings.selectedKeyboards.filter(k => k.isSelected);
 
@@ -444,9 +444,9 @@ application.controller("SettingsController", ["$scope", "settings", function Set
     $scope.settings = settings;
 
     $scope.keyboards = settings.selectedKeyboards;
-    
+
     $scope.$watch("keyboards", function (newValue, oldValue) {
         $scope.settings.selectedKeyboards = $scope.keyboards;
     }, true);
-    
+
 }]);

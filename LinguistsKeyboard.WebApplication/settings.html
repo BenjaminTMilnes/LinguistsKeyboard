@@ -2,14 +2,14 @@
 
 <table class="settings">
     <tr>
-           <th>Keyboards</th>
+        <th>Keyboards</th>
         <td>
-            <div ng-repeat="keyboard in keyboards"     class="availablekeyboard">
+            <div ng-repeat="keyboard in keyboards" class="availablekeyboard">
                 <input type="checkbox" ng-model="keyboard.isSelected" id="keyboard-{{keyboard.reference}}" />
-                       <label for="keyboard-{{keyboard.reference}}">{{keyboard.name}}</label>
+                <label for="keyboard-{{keyboard.reference}}">{{keyboard.name}}</label>
             </div>
         </td>
-     </tr>
+    </tr>
 </table>
 
 <div class="links"><a href="/#/" title="Back to keyboard">&larr; Back to keyboard</a></div>

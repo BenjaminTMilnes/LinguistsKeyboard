@@ -152,14 +152,16 @@ const mathematics1 = new Keyboard("Mathematics Set 1", "Mathematics 1", "mathema
 
 const T1German = new Keyboard("German (T1)", "German (T1)", "german1", false, "1234567890ß qwertzuiopü+asdfghjklöä#<yxcvbnm,.-".split("").join("|"), "!\"§$%&/()=? QWERTZUIOPÜ*ASDFGHJKLÖÄ'>YXCVBNM;:_".split("").join("|"), " \u00b2\u00b3   {[]}\\ @ €        ~                   μ    ".split("").join("|"), "                                                ".split("").join("|"));
 
-const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, Greek1, Greek2, mathematics1];
+const French1 = new Keyboard("French (France)", "French", "french1", false, "&é\"'(-è–çà)=azertyuiop $qsdfghjklmù*<wxcvbn,;:!".split("").join("|"), "1234567890°+AZERTYUIOP £QSDFGHJKLM%μ>WXCVBN?./§".split("").join("|"), " ~#{[ `\\^@]}  €                               ".split("").join("|"), BLANK.split("").join("|"));
+
+const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, Greek1, Greek2, mathematics1];
 
 
 
 class Settings {
     constructor() {
         this._mainOutput = "";
-        this._selectedKeyboards = [];
+        this._selectedKeyboards = ["english1", "english3", "french1", "german1", "greek2"];
 
         this.loadFromLocalStorage();
     }

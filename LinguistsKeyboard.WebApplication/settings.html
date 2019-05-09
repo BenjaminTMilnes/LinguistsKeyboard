@@ -1,10 +1,10 @@
 ﻿<h2>Settings</h2>
 
-<table>
+<table class="settings">
     <tr>
            <th>Keyboards</th>
         <td>
-            <div ng-repeat="keyboard in keyboards">
+            <div ng-repeat="keyboard in keyboards"     class="availablekeyboard">
                 <input type="checkbox" ng-model="keyboard.isSelected" id="keyboard-{{keyboard.reference}}" />
                        <label for="keyboard-{{keyboard.reference}}">{{keyboard.name}}</label>
             </div>

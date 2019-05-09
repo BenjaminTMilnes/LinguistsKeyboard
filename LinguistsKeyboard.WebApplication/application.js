@@ -139,7 +139,7 @@ const defaultKeyboard = new Keyboard(  "English (UK)", "English", "english1", tr
 
 const englishDiacritics = new Keyboard("English (UK) with Diacritics", "English + Diacritics", "english2", true, defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
 
-const EnglishBetter = new Keyboard("English (Better)", "English (Better)", "english3", true, "1234567890-\u2013qwertyuiop()asdfghjkl’‘’:zxcvbnm,.?".split("").join("|"), "#*      ~% \u2014QWERTYUIOP[]ASDFGHJKL “” ZXCVBNM; !".split("").join("|"), "\u0301\u0300\u0302\u030C\u0304\u0307\u0308\u0306\u0303    ₩€ ₮¥  œ₽{}æ$ ₣    £           \\/ ".split("").join("|"), "\u030b\u030f            &     Œ   Æ                       ".split("").join("|"));
+const EnglishBetter = new Keyboard("English (Better)", "English (Better)", "english3", true, "1234567890-\u2013qwertyuiop()asdfghjkl’‘’:zxcvbnm,.?".split("").join("|"), "#*{}    ~% \u2014QWERTYUIOP[]ASDFGHJKL “” ZXCVBNM; !".split("").join("|"), "\u0301\u0300\u0302\u030C\u0304\u0307\u0308\u0306\u0303    ₩€ ₮¥  œ₽  æ$ ₣    £      ç    \\/ ".split("").join("|"), "\u030b\u030f⟨⟩          &     Œ   Æ              Ç        ".split("").join("|"));
 
 const OldEnglish = new Keyboard("Old English", "Old English", "oldenglish1", false, "1234567890- qwertyuiop\u0304\u0307asdfgh kl;‘’ zxc bnm,.?".split("").join("|"), "      &*()  QWERTYUIOP  ASDFGH KL:“” ZXC BNM\\/!".split("").join("|"), "             ƿ  þ       æ ð                     ".split("").join("|"), "             Ƿ  Þ       Æ Ð                     ".split("").join("|"));
 

@@ -154,7 +154,9 @@ const T1German = new Keyboard("German (T1)", "German (T1)", "german1", false, "1
 
 const French1 = new Keyboard("French (France)", "French", "french1", false, "&é\"'(-è–çà)=azertyuiop $qsdfghjklmù*<wxcvbn,;:!".split("").join("|"), "1234567890°+AZERTYUIOP £QSDFGHJKLM%μ>WXCVBN?./§".split("").join("|"), " ~#{[ `\\^@]}  €                               ".split("").join("|"), BLANK.split("").join("|"));
 
-const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, Greek1, Greek2, mathematics1];
+const French2 = new Keyboard("French (Better)", "French (Better)", "french2", false, "1234567890-\u2013azertyuiopàéqsdfghjklmùè<wxcvbn,./?".split("").join("|"), "(‹«‘“”’»›)*\u2014AZERTYUIOPÀÉQSDFGHJKLMÙÈ>WXCVBN;:\\!".split("").join("|"), "[{`'\"   }]  æ €     œ    $      £      ç       ".split("").join("|"), "§      ^%°  Æ &     Œ                  Ç        ".split("").join("|"));
+
+const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, French2, Greek1, Greek2, mathematics1];
 
 
 

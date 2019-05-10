@@ -148,7 +148,11 @@ const Greek1 = new Keyboard("Greek (Intuitive for English-speakers)", "Greek", "
 
 const Greek2 = new Keyboard("Greek (Greece)", "Greek", "greek2", true, "1234567890-=;ςερτυθιοπ[]ασδφγηξκλ\u0301'\\<ζχψωβνμ,./".split("").join("|"), "!@#$%^&*()_+: ΕΡΤΥΘΙΟΠ{}ΑΣΔΦΓΗΞΚΛ\u0308\" >ΖΧΨΩΒΝΜ<>?".split("").join("|"), " \u2082\u2083£§¶ ¤      €® ¥                     ©         ".split("").join("|"), "                                                 ".split("").join("|"));
 
-const mathematics1 = new Keyboard("Mathematics Set 1", "Mathematics 1", "mathematics1", true, "1234567890\u2212\u002bqwertyuiop()asdfghjkl;{}$zxcvbnm,.!".split("").join("|"), "       \u00d7  ∓±QWERTYUIOP[]ASDFGHJKL:⟨⟩ ZXCVBNM<>?".split("").join("|"), "\u2081\u2082\u2083\u2084\u2085\u2086\u2087\u2088\u2089\u2080\u208b\u208aχωερτυ ιοπ  ασδφθη κλ    ζξγψβνμ\u226a\u226b ".split("").join("|"), "\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079\u2070\u207b\u207aΧΩΕΡΤΥ ΙΟΠ  ΑΣΔΦΘΗ ΚΛ    ΖΞΓΨΒΝΜ\u2264\u2265 ".split("").join("|"));
+const Mathematics1 = new Keyboard("Mathematics Set 1", "Mathematics 1", "mathematics1", true, "1234567890\u2212\u002bqwertyuiop()asdfghjkl${} zxcvbnm,. ".split("").join("|"), "            QWERTYUIOP[]ASDFGHJKL \u27e8\u27e9 ZXCVBNM<> ".split("").join("|"), "                      \u230a\u230b                    \u226a\u226b ".split("").join("|"), "                      \u2308\u2309          \u27ea\u27eb        \u2264\u2265 ".split("").join("|"));
+
+const Mathematics2 = new Keyboard("Mathematics Set 2 (Greek)", "Mathematics 2 (Greek)", "mathematics2", true, "1234567890\u2212\u002bχωερτυ ιοπ()ασδφθη κλ${} ζξγψβνμ,. ".split("").join("|"), "            ΧΩΕΡΤΥ ΙΟΠ[]ΑΣΔΦΘΗ ΚΛ \u27e8\u27e9 ΖΞΓΨΒΝΜ   ".split("").join("|"), "              εϱ     ϖ\u230a\u230b ς φϑ  ϰ               ".split("").join("|"), "                      \u2308\u2309          \u27ea\u27eb ".split("").join("|"));
+
+const Mathematics3 = new Keyboard("Mathematics Set 3", "Mathematics 3", "mathematics3", true, "1234567890\u2212\u002b          ()א ∇  ħ   ${}     ב     ".split("").join("|"), "                      []     Ħ    \u27e8\u27e9               ".split("").join("|"), "                      \u230a\u230b            ".split("").join("|"), "                      \u2308\u2309          \u27ea\u27eb                           ".split("").join("|"));
 
 const T1German = new Keyboard("German (T1)", "German (T1)", "german1", false, "1234567890ß qwertzuiopü+asdfghjklöä#<yxcvbnm,.-".split("").join("|"), "!\"§$%&/()=? QWERTZUIOPÜ*ASDFGHJKLÖÄ'>YXCVBNM;:_".split("").join("|"), " \u00b2\u00b3   {[]}\\ @ €        ~                   μ    ".split("").join("|"), "                                                ".split("").join("|"));
 
@@ -158,7 +162,7 @@ const French2 = new Keyboard("French (Better)", "French (Better)", "french2", fa
 
 const RussianJCUKEN = new Keyboard("Russian (JCUKEN)", "Russian (JCUKEN)", "russian1", false, "1234567890-=йцукенгшщзхъфывапролджэ  ячсмитьбю.".split("").join("|"), "!\" ;%:?*()_+ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ  ЯЧСМИТЬБЮ,".split("").join("|"), "".split("").join("|"), "".split("").join("|"));
 
-const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, French2, Greek1, Greek2, mathematics1, RussianJCUKEN];
+const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, French2, Greek1, Greek2, Mathematics1, Mathematics2, Mathematics3, RussianJCUKEN];
 
 
 

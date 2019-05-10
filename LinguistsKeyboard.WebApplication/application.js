@@ -154,16 +154,20 @@ const T1German = new Keyboard("German (T1)", "German (T1)", "german1", false, "1
 
 const French1 = new Keyboard("French (France)", "French", "french1", false, "&é\"'(-è–çà)=azertyuiop $qsdfghjklmù*<wxcvbn,;:!".split("").join("|"), "1234567890°+AZERTYUIOP £QSDFGHJKLM%μ>WXCVBN?./§".split("").join("|"), " ~#{[ `\\^@]}  €                               ".split("").join("|"), BLANK.split("").join("|"));
 
-const French2 = new Keyboard("French (Better)", "French (Better)", "french2", false, "1234567890-\u2013azertyuiopàéqsdfghjklmùè<wxcvbn,./?".split("").join("|"), "(‹«‘“”’»›)*\u2014AZERTYUIOPÀÉQSDFGHJKLMÙÈ>WXCVBN;:\\!".split("").join("|"), "[{`'\"   }]  æ €     œ    $      £      ç       ".split("").join("|"), "§      ^%°  Æ &     Œ                  Ç        ".split("").join("|"));
+const French2 = new Keyboard("French (Better)", "French (Better)", "french2", false, "1234567890-\u2013azertyuiopàéqsdfghjklmùè’wxcvbn,./?".split("").join("|"), "(‹«‘“”’»›)*\u2014AZERTYUIOPÀÉQSDFGHJKLMÙÈ WXCVBN;:\\!".split("").join("|"), "[{`'\"   }]  æ €     œ    $      £      ç   <>  ".split("").join("|"), "§      ^%°  Æ &     Œ                  Ç        ".split("").join("|"));
 
-const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, French2, Greek1, Greek2, mathematics1];
+const RussianJCUKEN = new Keyboard("Russian (JCUKEN)", "Russian (JCUKEN)", "russian1", false, "1234567890-=йцукенгшщзхъфывапролджэ  ячсмитьбю.".split("").join("|"), "!\" ;%:?*()_+ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ  ЯЧСМИТЬБЮ,".split("").join("|"), "".split("").join("|"), "".split("").join("|"));
+
+const Keyboards = [defaultKeyboard, englishDiacritics, EnglishBetter, OldEnglish, T1German, French1, French2, Greek1, Greek2, mathematics1, RussianJCUKEN];
 
 
 
 class Settings {
     constructor() {
         this._mainOutput = "";
-        this._selectedKeyboards = ["english1", "english3", "french1", "german1", "greek2"];
+        this._numberOfRows = 7;
+        this._selectedKeyboards = ["english3", "french1", "german1", "greek2"];
+        this._showInstructions = true;
 
         this.loadFromLocalStorage();
     }
@@ -173,14 +177,18 @@ class Settings {
 
         if (hasBeenSet) {
             this._mainOutput = window.localStorage.getItem("mainOutput");
+            this._numberOfRows = parseInt(window.localStorage.getItem("numberOfRows"));
             this._selectedKeyboards = window.localStorage.getItem("selectedKeyboards").split(";");
+            this._showInstructions = (window.localStorage.getItem("showInstructions") == "true");
         }
     }
 
     saveToLocalStorage() {
         window.localStorage.setItem("hasBeenSet", true);
         window.localStorage.setItem("mainOutput", this._mainOutput);
+        window.localStorage.setItem("numberOfRows", this._numberOfRows);
         window.localStorage.setItem("selectedKeyboards", this._selectedKeyboards.join(";"));
+        window.localStorage.setItem("showInstructions", this._showInstructions);
     }
 
     get mainOutput() {
@@ -190,6 +198,18 @@ class Settings {
     set mainOutput(value) {
         if (value != this._mainOutput) {
             this._mainOutput = value;
+
+            this.saveToLocalStorage();
+        }
+    }
+
+    get numberOfRows() {
+        return this._numberOfRows;
+    }
+
+    set  numberOfRows(value) {
+        if (value != this._numberOfRows) {
+            this._numberOfRows = value;
 
             this.saveToLocalStorage();
         }
@@ -213,6 +233,18 @@ class Settings {
 
         if (sk != this._selectedKeyboards) {
             this._selectedKeyboards = sk;
+
+            this.saveToLocalStorage();
+        }
+    }
+
+    get showInstructions() {
+        return this._showInstructions;
+    }
+
+    set  showInstructions(value) {
+        if (value != this._showInstructions) {
+            this._showInstructions = value;
 
             this.saveToLocalStorage();
         }

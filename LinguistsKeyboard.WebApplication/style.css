@@ -2,7 +2,7 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
     color: #202020;
-    margin: 0px;
+    margin: 0px 0px 200px 0px;
     padding: 0px;
 }
 
@@ -221,4 +221,16 @@ a {
     margin: 2px;
     border-radius: 2px;
     font-weight: normal;
+}
+
+.settings input[type=number] {
+    box-sizing: border-box;
+    padding: 7px 10px;
+    margin: 2px;
+    border: 1px solid #DADADA;
+    border-radius: 2px;
+    font-size: 14px;
+    outline: none;
+    font-family:   inherit;
+
 }

@@ -7,7 +7,7 @@
 }
 
 .centrecolumn {
-    width: 1000px;
+     max-width: 1000px;
     margin: 0px auto;
 }
 
@@ -18,23 +18,23 @@ h1, h2, h3, h4, h5, h6, p, textarea {
 }
 
 h1 {
-    font-size: 22px;
+    font-size: 17px;
     text-transform: uppercase;
     text-align: center;
-    margin: 70px 0px;
+    margin: 14px 0px;
     position: relative;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 17px;
     text-align: center;
-    margin: 20px 0px;
+    margin: 14px 0px;
 }
 
 p {
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
-    margin: 20px 0px;
+    margin: 14px 0px;
 }
 
     p code {
@@ -63,8 +63,35 @@ a {
     }
 
 
+@media (min-width:400px) {
+    
+h1 {
+    font-size: 22px;
+    margin: 70px 0px;
+}
+
+h2 {
+    font-size: 20px;
+    margin: 20px 0px;
+}
+
+
+p {
+    font-size: 14px;
+    margin: 20px 0px;
+}
+
+th, td {
+    font-family: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+}
+
+
 .donatebutton {
-    display: inline-block;
+    display:   none;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -92,8 +119,8 @@ a {
 
 
 .copybutton {
-    font-size: 17px;
-    padding: 7px 17px;
+    font-size: 14px;
+    padding: 4px 14px;
     border-radius: 2px;
     color: #FFFFFF;
     background-color: #105ecc;
@@ -106,15 +133,31 @@ a {
         background-color: #2f7ae2;
     }
 
+
+@media (min-width:400px) {
+    
+
+.donatebutton {
+    display: inline-block;
+}
+
+
+.copybutton {
+    font-size: 17px;
+    padding: 7px 17px;
+}
+}
+
 .mainoutput {
-    width: 100%;
+    width: 97%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #DADADA;
     border-radius: 2px;
-    font-size: 20px;
+    font-size: 14px;
     outline: none;
     font-family: 'Times New Roman';
+         margin:0px auto;
 }
 
     .mainoutput:focus {
@@ -122,14 +165,40 @@ a {
     }
 
 .links {
-    margin: 20px 0px;
+    margin: 14px 0px;
     text-align: center;
+    font-size: 12px;
+}
+
+@media (min-width:400px) {
+
+.mainoutput {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.links {
+    margin: 20px 0px;
     font-size: 14px;
 }
+}
+
+.keyboard {
+    font-size: 14px;
+    margin: 20px 0px 100px 0px;
+           background-color:#F0F0F0;
+              padding:1px;
+  }
+
+@media (min-width:400px) {
 
 .keyboard {
     font-size: 20px;
     margin: 40px -2px 200px -2px;
+           background-color: none;
+              padding:0px;
+}
 }
 
 .keyboard-row {
@@ -139,12 +208,10 @@ a {
 
 .keyboard-key {
     display: inline-block;
-    padding: 1em;
-    background-color: #FAFAFA;
-    background-image: linear-gradient(#F7F7F7, #FAFAFA, #F9F9F9);
-    border: 1px solid #E8E8E8;
-    border-radius: 2px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    padding:0.5em;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 4px;
     margin: 2px;
     text-align: center;
     box-sizing: border-box;
@@ -152,6 +219,29 @@ a {
     cursor: pointer;
     font-weight: normal;
     position: relative;
+    font-family:    Arial, sans-serif;
+}
+
+.keyboard-letterkey {
+    width: 3.33em;
+}
+
+.keyboard-keydown {
+    background-color: #F4F4F4;
+    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
+}
+
+@media (min-width:400px) {
+    
+
+.keyboard-key {
+    padding: 1em;
+    background-color: #FAFAFA;
+    background-image: linear-gradient(#F7F7F7, #FAFAFA, #F9F9F9);
+    border: 1px solid #E8E8E8;
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    margin: 2px;
     font-family: 'Times New Roman';
 }
 
@@ -164,10 +254,27 @@ a {
 }
 
 .keyboard-keydown {
-    background-color: #F4F4F4;
-    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
     border: 1px solid #E1E1E1;
 }
+}
+
+
+.keyboard-key-uppershift, .keyboard-key-alternateuppershift, .keyboard-key-alternatelowershift {
+    position: initial;
+    display: inline-block;
+}
+
+.greyedout {
+           display: none;
+}
+
+.hideformobile{
+              display:none;
+}
+
+
+@media (min-width:400px) {
+    
 
 
 .keyboard-key-uppershift, .keyboard-key-alternateuppershift, .keyboard-key-alternatelowershift {
@@ -196,8 +303,14 @@ a {
     height: 1.15em;
 }
 
+.hideformobile{
+              display:   block;
+}
+
 .greyedout {
+            display:block;
     color: #D0D0D0;
+}
 }
 
 .settings {

@@ -7,7 +7,7 @@
 }
 
 .centrecolumn {
-     max-width: 1000px;
+    max-width: 1000px;
     margin: 0px auto;
 }
 
@@ -64,34 +64,33 @@ a {
 
 
 @media (min-width:400px) {
-    
-h1 {
-    font-size: 22px;
-    margin: 70px 0px;
-}
 
-h2 {
-    font-size: 20px;
-    margin: 20px 0px;
-}
+    h1 {
+        font-size: 22px;
+        margin: 70px 0px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin: 20px 0px;
+    }
 
 
-p {
-    font-size: 14px;
-    margin: 20px 0px;
-}
+    p {
+        font-size: 14px;
+        margin: 20px 0px;
+    }
 
-th, td {
-    font-family: inherit;
-    font-weight: inherit;
-    color: inherit;
-}
-
+    th, td {
+        font-family: inherit;
+        font-weight: inherit;
+        color: inherit;
+    }
 }
 
 
 .donatebutton {
-    display:   none;
+    display: none;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -126,7 +125,7 @@ th, td {
     background-color: #105ecc;
     border: none;
     cursor: pointer;
-    margin-left: 4px;
+    margin-left: 6px;
 }
 
     .copybutton:hover {
@@ -135,29 +134,38 @@ th, td {
 
 
 @media (min-width:400px) {
-    
 
-.donatebutton {
-    display: inline-block;
+
+    .donatebutton {
+        display: inline-block;
+    }
+
+
+    .copybutton {
+        font-size: 17px;
+        padding: 7px 17px;
+    margin-left: 5px;
+    }
 }
 
-
-.copybutton {
-    font-size: 17px;
-    padding: 7px 17px;
+.outputAndSettings {
+    padding: 0px 7px;
 }
+
+.instructions {
+    display: none;
 }
 
 .mainoutput {
-    width: 97%;
+    width: 100%;
     box-sizing: border-box;
     padding: 10px;
     border: 1px solid #DADADA;
     border-radius: 2px;
     font-size: 14px;
     outline: none;
-    font-family: 'Times New Roman';
-         margin:0px auto;
+    margin: 0px;
+         font-family:Arial, sans-serif;
 }
 
     .mainoutput:focus {
@@ -172,33 +180,41 @@ th, td {
 
 @media (min-width:400px) {
 
-.mainoutput {
-    width: 100%;
-    padding: 20px;
-    font-size: 20px;
-}
+    .outputAndSettings {
+        padding: 0px;
+    }
 
-.links {
-    margin: 20px 0px;
-    font-size: 14px;
-}
+    .instructions {
+        display: block;
+    }
+
+    .mainoutput {
+        padding: 20px;
+        font-size: 20px;
+    font-family: 'Times New Roman';
+    }
+
+    .links {
+        margin: 20px 0px;
+        font-size: 14px;
+    }
 }
 
 .keyboard {
     font-size: 14px;
     margin: 20px 0px 100px 0px;
-           background-color:#F0F0F0;
-              padding:1px;
-  }
+    background-color: #F0F0F0;
+    padding: 1px;
+}
 
 @media (min-width:400px) {
 
-.keyboard {
-    font-size: 20px;
-    margin: 40px -2px 200px -2px;
-           background-color: none;
-              padding:0px;
-}
+    .keyboard {
+        font-size: 20px;
+        margin: 40px -2px 200px -2px;
+        background-color: transparent;
+        padding: 0px;
+    }
 }
 
 .keyboard-row {
@@ -208,7 +224,7 @@ th, td {
 
 .keyboard-key {
     display: inline-block;
-    padding:0.5em;
+    padding: 0.5em;
     background-color: #FFFFFF;
     border: none;
     border-radius: 4px;
@@ -219,7 +235,20 @@ th, td {
     cursor: pointer;
     font-weight: normal;
     position: relative;
-    font-family:    Arial, sans-serif;
+    font-family: Arial, sans-serif;
+}
+
+
+.keyspace {
+    display: inline-block;
+    padding: 0em;
+    border: none;
+    margin: 2px;
+    box-sizing: border-box;
+    user-select: none;
+    font-weight: normal;
+    position: relative;
+    font-family: Arial, sans-serif;
 }
 
 .keyboard-letterkey {
@@ -231,30 +260,43 @@ th, td {
     background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
 }
 
-@media (min-width:400px) {
-    
-
-.keyboard-key {
-    padding: 1em;
-    background-color: #FAFAFA;
-    background-image: linear-gradient(#F7F7F7, #FAFAFA, #F9F9F9);
-    border: 1px solid #E8E8E8;
-    border-radius: 2px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    margin: 2px;
-    font-family: 'Times New Roman';
+.keyboard-keyboardselected{
+       background-color:#105ecc;
+          color:#FFFFFF;
 }
 
-    .keyboard-key:hover {
-        border: 1px solid #C0C0C0;
+@media (min-width:400px) {
+
+
+    .keyboard-key {
+        padding: 1em;
+        background-color: #FAFAFA;
+        background-image: linear-gradient(#F7F7F7, #FAFAFA, #F9F9F9);
+        border: 1px solid #E8E8E8;
+        border-radius: 2px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+        margin: 2px;
+        font-family: 'Times New Roman';
     }
 
-.keyboard-letterkey {
-    width: 3.33em;
-}
+        .keyboard-key:hover {
+            border: 1px solid #C0C0C0;
+        }
 
-.keyboard-keydown {
-    border: 1px solid #E1E1E1;
+    .keyboard-letterkey {
+        width: 3.33em;
+    }
+
+    .keyboard-keydown {
+        border: 1px solid #E1E1E1;
+    }
+    
+
+.keyboard-keyboardselected{
+    background-color: #F4F4F4;
+    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
+        border: 1px solid #E1E1E1;
+          color: inherit;
 }
 }
 
@@ -265,52 +307,54 @@ th, td {
 }
 
 .greyedout {
-           display: none;
+    display: none;
 }
 
-.hideformobile{
-              display:none;
+.hideformobile {
+    display: none;
 }
 
 
 @media (min-width:400px) {
-    
 
+    .keyboard-key-uppershift, .keyboard-key-alternateuppershift, .keyboard-key-alternatelowershift {
+        position: absolute;
+        display: block;
+        width: 0.67em;
+        padding: 0.17em 0.33em;
+        text-align: center;
+    }
 
-.keyboard-key-uppershift, .keyboard-key-alternateuppershift, .keyboard-key-alternatelowershift {
-    position: absolute;
-    display: block;
-    width: 0.67em;
-    padding: 0.17em 0.33em;
-    text-align: center;
-}
+    .keyboard-key-uppershift {
+        top: 0em;
+        left: 0em;
+        height: 1.67em;
+    }
 
-.keyboard-key-uppershift {
-    top: 0em;
-    left: 0em;
-    height: 1.67em;
-}
+    .keyboard-key-alternateuppershift {
+        top: 0em;
+        right: 0em;
+        height: 1.67em;
+    }
 
-.keyboard-key-alternateuppershift {
-    top: 0em;
-    right: 0em;
-    height: 1.67em;
-}
+    .keyboard-key-alternatelowershift {
+        bottom: 0em;
+        right: 0em;
+        height: 1.15em;
+    }
 
-.keyboard-key-alternatelowershift {
-    bottom: 0em;
-    right: 0em;
-    height: 1.15em;
-}
+    .hideformobile {
+        display: block;
+    }
 
-.hideformobile{
-              display:   block;
-}
+    .showformobile {
+        display: none;
+    }
 
-.greyedout {
-            display:block;
-    color: #D0D0D0;
-}
+    .greyedout {
+        display: block;
+        color: #D0D0D0;
+    }
 }
 
 .settings {
@@ -344,6 +388,5 @@ th, td {
     border-radius: 2px;
     font-size: 14px;
     outline: none;
-    font-family:   inherit;
-
+    font-family: inherit;
 }

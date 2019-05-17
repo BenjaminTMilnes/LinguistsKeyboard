@@ -144,7 +144,7 @@ a {
     .copybutton {
         font-size: 17px;
         padding: 7px 17px;
-    margin-left: 5px;
+        margin-left: 5px;
     }
 }
 
@@ -165,7 +165,7 @@ a {
     font-size: 14px;
     outline: none;
     margin: 0px;
-         font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
     .mainoutput:focus {
@@ -191,7 +191,7 @@ a {
     .mainoutput {
         padding: 20px;
         font-size: 20px;
-    font-family: 'Times New Roman';
+        font-family: 'Times New Roman';
     }
 
     .links {
@@ -260,9 +260,9 @@ a {
     background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
 }
 
-.keyboard-keyboardselected{
-       background-color:#105ecc;
-          color:#FFFFFF;
+.keyboard-keyboardselected {
+    background-color: #105ecc;
+    color: #FFFFFF;
 }
 
 @media (min-width:400px) {
@@ -290,14 +290,14 @@ a {
     .keyboard-keydown {
         border: 1px solid #E1E1E1;
     }
-    
 
-.keyboard-keyboardselected{
-    background-color: #F4F4F4;
-    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
+
+    .keyboard-keyboardselected {
+        background-color: #F4F4F4;
+        background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
         border: 1px solid #E1E1E1;
-          color: inherit;
-}
+        color: inherit;
+    }
 }
 
 

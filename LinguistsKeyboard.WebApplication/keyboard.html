@@ -20,24 +20,24 @@
         </div>
     </div>
     <div class="keyboard-row">
-        <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:3.33em;">`</div>        
-         <letterkey  class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row1Keys" />
+        <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:3.33em;">`</div>
+        <letterkey class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row1Keys"></letterkey>
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:5em;" ng-class="(backspaceKeyIsDown)? 'keyboard-keydown':''" ng-click="clickBackspace()">←</div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:5em;" ng-class="(tabKeyIsDown)? 'keyboard-keydown':''" ng-click="clickTab()">↹</div>
-        <letterkey  class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row2Keys" />
+        <letterkey class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row2Keys"></letterkey>
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:3.33em;"></div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:5.67em;" ng-class="(capsLockState == 1)? 'keyboard-keydown':''" ng-click="clickCapsLock()">caps</div>
         <div class="keyspace showformobile" style="width:1.5em;"></div>
-        <letterkey  class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row3Keys" />
+        <letterkey class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row3Keys"></letterkey>
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:2.67em;"></div>
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey" style="width:4em;" ng-class="(shiftState == 1)? 'keyboard-keydown':''" ng-click="clickShift()" ng-dblclick="doubleClickShift()">↑</div>
-        <letterkey  class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row4Keys" />
+        <letterkey class="keyboard-key keyboard-letterkey" key="key" register="register" ng-repeat="key in currentKeyboard.row4Keys"></letterkey>
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:7.88em;" ng-class="(shiftState == 1)? 'keyboard-keydown':''" ng-click="clickShift()" ng-dblclick="doubleClickShift()">↑</div>
     </div>
     <div class="keyboard-row">

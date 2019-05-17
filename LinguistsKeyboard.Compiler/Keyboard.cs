@@ -10,6 +10,7 @@ namespace LinguistsKeyboard.Compiler
     {
         public string Name { get; set; }
         public string AbbreviatedName { get; set; }
+        public string Reference { get; set; }
         public IEnumerable<Key> Row1Keys { get; set; }
         public IEnumerable<Key> Row2Keys { get; set; }
         public IEnumerable<Key> Row3Keys { get; set; }

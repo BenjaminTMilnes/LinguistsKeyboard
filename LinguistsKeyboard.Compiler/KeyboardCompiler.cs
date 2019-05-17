@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace LinguistsKeyboard.Compiler
 {
@@ -21,6 +22,7 @@ namespace LinguistsKeyboard.Compiler
 
             keyboard.Name = l[0];
             keyboard.AbbreviatedName = l[1];
+            keyboard.Reference = GetReference(keyboard.Name);
 
             keyboard.Row1Keys = GetKeysForRow(l[2], l[3], l[4], l[5], 12);
             keyboard.Row2Keys = GetKeysForRow(l[6], l[7], l[8], l[9], 12);
@@ -28,6 +30,24 @@ namespace LinguistsKeyboard.Compiler
             keyboard.Row4Keys = GetKeysForRow(l[14], l[15], l[16], l[17], 11);
 
             return keyboard;
+        }
+
+        public string ExportKeyboardToJS(Keyboard keyboard)
+        {
+            var r1 = string.Join("|", keyboard.Row1Keys.Select(k => k.LowerShift)) + "|" + string.Join("|", keyboard.Row2Keys.Select(k => k.LowerShift)) + "|" + string.Join("|", keyboard.Row3Keys.Select(k => k.LowerShift)) + "|" + string.Join("|", keyboard.Row4Keys.Select(k => k.LowerShift));
+
+            var r2 = string.Join("|", keyboard.Row1Keys.Select(k => k.UpperShift)) + "|" + string.Join("|", keyboard.Row2Keys.Select(k => k.UpperShift)) + "|" + string.Join("|", keyboard.Row3Keys.Select(k => k.UpperShift)) + "|" + string.Join("|", keyboard.Row4Keys.Select(k => k.UpperShift));
+
+            var r3 = string.Join("|", keyboard.Row1Keys.Select(k => k.AlternateLowerShift)) + "|" + string.Join("|", keyboard.Row2Keys.Select(k => k.AlternateLowerShift)) + "|" + string.Join("|", keyboard.Row3Keys.Select(k => k.AlternateLowerShift)) + "|" + string.Join("|", keyboard.Row4Keys.Select(k => k.AlternateLowerShift));
+
+            var r4 = string.Join("|", keyboard.Row1Keys.Select(k => k.AlternateUpperShift)) + "|" + string.Join("|", keyboard.Row2Keys.Select(k => k.AlternateUpperShift)) + "|" + string.Join("|", keyboard.Row3Keys.Select(k => k.AlternateUpperShift)) + "|" + string.Join("|", keyboard.Row4Keys.Select(k => k.AlternateUpperShift));
+
+            return string.Format("const {0} = new Keyboard(\"{1}\", \"{2}\", \"{3}\", false, \"{4}\", \"{5}\", \"{6}\", \"{7}\");\n\n", keyboard.Reference, keyboard.Name, keyboard.AbbreviatedName, keyboard.Reference, r1, r2, r3, r4);
+        }
+
+        private string GetReference(string name)
+        {
+            return Regex.Replace(name, "[^A-Za-z0-9]", "");
         }
 
         private Key[] GetKeysForRow(string line1, string line2, string line3, string line4, int minimumLength)
@@ -60,6 +80,8 @@ namespace LinguistsKeyboard.Compiler
             var n = 0;
             var t = "";
 
+            line = line.Trim();
+
             for (var i = 2; i < line.Length; i++)
             {
                 var c = line[i];
@@ -68,6 +90,7 @@ namespace LinguistsKeyboard.Compiler
                 {
                     t += c;
                     n = 1;
+                    continue;
                 }
 
                 if (n == 1 && c == ' ')
@@ -75,17 +98,20 @@ namespace LinguistsKeyboard.Compiler
                     characters.Add(t);
                     t = "";
                     n = 0;
+                    continue;
                 }
 
                 if (n == 0 && c != ' ')
                 {
                     t += c;
                     n = 1;
+                    continue;
                 }
 
                 if (n == 1 && c != ' ')
                 {
                     t += c;
+                    continue;
                 }
             }
 

@@ -259,6 +259,16 @@ application.factory("settings", function () {
     return new Settings();
 });
 
+application.directive("letterkey", function () {
+    return {
+        restrict: "E",
+        templateUrl: "letterkey.html",
+        scope: {
+            key: "=key",
+            register: "=register"
+        }
+    };
+});
 
 application.controller("KeyboardController", ["$scope", "settings", function KeyboardController($scope, settings) {
 
@@ -274,17 +284,22 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.availableKeyboards = [defaultKeyboard];
     }
 
-    $scope.shiftIsDown = false;
-    $scope.shiftIsLocked = false;
-    $scope.altIsDown = false;
-    $scope.altIsLocked = false;
-    $scope.controlIsDown = false;
+    $scope.register = 1;
 
-    $scope.capsLockIsOn = false;
+    $scope.shiftKeyIsDown = false;
+    $scope.shiftState = 0;
 
-    $scope.backspaceIsDown = false;
-    $scope.spaceIsDown = false;
-    $scope.tabIsDown = false;
+    $scope.altKeyIsDown = false;
+    $scope.altState = 0;
+
+    $scope.controlKeyIsDown = false;
+    $scope.controlState = 0;
+
+    $scope.capsLockState = 0;
+
+    $scope.backspaceKeyIsDown = false;
+    $scope.spaceKeyIsDown = false;
+    $scope.tabKeyIsDown = false;
 
     $scope.setKeyboard = function (keyboard) {
         $scope.currentKeyboard = keyboard;
@@ -323,28 +338,134 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.mainOutput += letter;
     }
 
+    $scope.getRegister = function () {
+        var shiftState = ($scope.shiftState == 1 || $scope.shiftState == 2) || ($scope.capsLockState == 1);
+        var altState = ($scope.altState == 1 || $scope.altState == 2);
+
+        if (!shiftState && !altState) {
+            return 1;
+        }
+        if (shiftState && !altState) {
+            return 2;
+        }
+        if (!shiftState && altState) {
+            return 3;
+        }
+        if (shiftState && altState) {
+            return 4;
+        }
+
+        return 1;
+    }
+
     $scope.pressKey = function (key) {
         var c = "";
+        var r = $scope.getRegister();
 
-        if (!$scope.shiftIsDown && !$scope.capsLockIsOn && !$scope.altIsDown) {
+        if (r == 1) {
             c = key.l;
         }
-        if (($scope.shiftIsDown || $scope.capsLockIsOn) && !$scope.altIsDown) {
+        if (r == 2) {
             c = key.u;
         }
-        if (!$scope.shiftIsDown && !$scope.capsLockIsOn && $scope.altIsDown) {
+        if (r == 3) {
             c = key.al;
         }
-        if (($scope.shiftIsDown || $scope.capsLockIsOn) && $scope.altIsDown) {
+        if (r == 4) {
             c = key.au;
         }
 
         $scope.typeLetter(c);
-
-        $scope.shiftIsDown = false;
     }
 
     $scope.pressSpace = function () {
+        $scope.typeLetter(" ");
+    }
+
+    $scope.clickKey = function (key) {
+        $scope.pressKey(key);
+    }
+
+    $scope.clickShift = function () {
+        if ($scope.shiftState == 0) {
+            $scope.shiftState = 1;
+        }
+        if ($scope.shiftState == 1 && !$scope.shiftKeyIsDown) {
+            $scope.shiftState = 0;
+        }
+        if ($scope.shiftState == 2) {
+            $scope.shiftState = 0;
+        }
+    }
+
+    $scope.doubleClickShift = function () {
+        if ($scope.shiftState == 0) {
+            $scope.shiftState = 2;
+        }
+        if ($scope.shiftState == 1 && !$scope.shiftKeyIsDown) {
+            $scope.shiftState = 2;
+        }
+        if ($scope.shiftState == 2) {
+            $scope.shiftState = 0;
+        }
+    }
+
+    $scope.clickAlt = function () {
+        if ($scope.altState == 0) {
+            $scope.altState = 1;
+        }
+        if ($scope.altState == 1 && !$scope.altKeyIsDown) {
+            $scope.altState = 0;
+        }
+        if ($scope.altState == 2) {
+            $scope.altState = 0;
+        }
+    }
+
+    $scope.doubleClickAlt = function () {
+        if ($scope.altState == 0) {
+            $scope.altState = 2;
+        }
+        if ($scope.altState == 1 && !$scope.altKeyIsDown) {
+            $scope.altState = 2;
+        }
+        if ($scope.altState == 2) {
+            $scope.altState = 0;
+        }
+    }
+
+    $scope.clickControl = function () {
+        if ($scope.controlState == 0) {
+            $scope.controlState = 1;
+        }
+        if ($scope.controlState == 1 && !$scope.controlKeyIsDown) {
+            $scope.controlState = 0;
+        }
+    }
+
+    $scope.clickCapsLock = function () { }
+
+    $scope.clickTab = function () {
+        $scope.tab();
+    }
+
+    $scope.clickEnter = function () {
+        $scope.enter();
+    }
+
+    $scope.clickBackspace = function () {
+        $scope.backspace();
+    }
+
+    $scope.tab = function () {
+        $scope.typeLetter("\t");
+    }
+
+    $scope.enter = function () {
+        $scope.typeLetter("\n");
+    }
+
+    $scope.space = function () {
         $scope.typeLetter(" ");
     }
 
@@ -359,14 +480,16 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     $scope.keyDown = function (event) {
 
         if (event.altKey == false) {
-            $scope.altIsDown = false;
+            $scope.altKeyIsDown = false;
         }
 
         if (event.ctrlKey == false) {
-            $scope.controlIsDown = false;
+            $scope.controlKeyIsDown = false;
         }
 
-        if (!$scope.controlIsDown && event.code != "Space") {
+        $scope.register = $scope.getRegister();
+
+        if ($scope.controlState == 0 && event.code != "Space") {
             var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
 
             if (i < 0) {
@@ -382,51 +505,55 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             }
         }
 
-        if ($scope.controlIsDown && isAnyOneOf("0123456789", event.key)) {
+        if ($scope.controlState == 1 && isAnyOneOf("0123456789", event.key)) {
             $scope.selectKeyboard(event.key - 1);
             event.preventDefault();
         }
 
         if (event.code == "Space") {
-            $scope.spaceIsDown = true;
-            $scope.typeLetter(" ");
-            event.preventDefault();
-        }
-
-        if (event.code == "Enter") {
-            $scope.typeLetter("\n");
+            $scope.spaceKeyIsDown = true;
+            $scope.space();
             event.preventDefault();
         }
 
         if (event.code == "Tab") {
-            $scope.tabIsDown = true;
-            $scope.typeLetter("\t");
+            $scope.tabKeyIsDown = true;
+            $scope.tab();
+            event.preventDefault();
+        }
+
+        if (event.code == "Enter") {
+            $scope.enter();
             event.preventDefault();
         }
 
         if (event.code == "Backspace") {
-            $scope.backspaceIsDown = true;
+            $scope.backspaceKeyIsDown = true;
             $scope.backspace();
             event.preventDefault();
         }
 
         if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
-            $scope.shiftIsDown = true;
+            $scope.shiftKeyIsDown = true;
+            $scope.shiftState = 1;
             event.preventDefault();
         }
 
         if (event.code == "AltLeft" || event.code == "AltRight") {
-            $scope.altIsDown = true;
+            $scope.altKeyIsDown = true;
+            $scope.altState = 1;
             event.preventDefault();
         }
 
         if (event.code == "ControlLeft" || event.code == "ControlRight") {
-            $scope.controlIsDown = true;
+            $scope.controlKeyIsDown = true;
+            $scope.controlState = 1;
             event.preventDefault();
         }
 
         if (event.code == "CapsLock") {
             $scope.capsLockIsOn = !$scope.capsLockIsOn;
+            $scope.capsLockState = ($scope.capsLockState == 0) ? 1 : 0;
             event.preventDefault();
         }
 
@@ -441,8 +568,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         }
 
         if (event.shiftKey == false) {
-            $scope.shiftIsDown = false;
+            $scope.shiftKeyIsDown = false;
         }
+
+        $scope.register = $scope.getRegister();
 
         $scope.settings.mainOutput = $scope.mainOutput;
     }
@@ -450,34 +579,39 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     $scope.keyUp = function (event) {
 
         if (event.code == "Space") {
-            $scope.spaceIsDown = false;
+            $scope.spaceKeyIsDown = false;
             event.preventDefault();
         }
 
         if (event.code == "Tab") {
-            $scope.tabIsDown = false;
+            $scope.tabKeyIsDown = false;
             event.preventDefault();
         }
 
         if (event.code == "Backspace") {
-            $scope.backspaceIsDown = false;
+            $scope.backspaceKeyIsDown = false;
             event.preventDefault();
         }
 
         if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
-            $scope.shiftIsDown = false;
+            $scope.shiftKeyIsDown = false;
+            $scope.shiftState = 0;
             event.preventDefault();
         }
 
         if (event.code == "AltLeft" || event.code == "AltRight") {
-            $scope.altIsDown = false;
+            $scope.altKeyIsDown = false;
+            $scope.altState = 0;
             event.preventDefault();
         }
 
         if (event.code == "ControlLeft" || event.code == "ControlRight") {
             $scope.controlIsDown = false;
+            $scope.controlState = 0;
             event.preventDefault();
         }
+
+        $scope.register = $scope.getRegister();
     }
 
     $scope.clearMainOutput = function () {
@@ -486,6 +620,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.settings.mainOutput = $scope.mainOutput;
     }
 
+    $scope.register = $scope.getRegister();
     $scope.selectKeyboard(0);
 
     new ClipboardJS(".copybutton");

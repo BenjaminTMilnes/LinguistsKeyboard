@@ -1,0 +1,30 @@
+﻿Old English
+Old English
+
+
+
+_ 1 2 3 4 5 6 7 8 9 0 - \u2013
+_ # * { } ' \"     ( )   \u2014
+_                 [ ]
+_ 
+
+
+
+_ q w e r t y u i o p \u0304 \u0307
+_ Q W E R T Y U I O P  
+_   ƿ     þ       œ 
+_   Ƿ     Þ       Œ
+
+
+
+_ a s d f g h   k l ’ ‘ ’
+_ A S D F G H   K L   “ ”
+_ æ   ð           
+_ Æ   Ð          
+
+
+
+_   z x c   b n m , . ?
+_   Z X C   B N M ; : !
+_                 \\ /
+_                      

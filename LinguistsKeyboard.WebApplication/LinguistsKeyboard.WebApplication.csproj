@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="core.js" />
     <Content Include="credits.html" />
     <Content Include="keyboards.js" />
     <Content Include="letterkey.html" />

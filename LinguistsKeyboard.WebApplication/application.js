@@ -14,7 +14,7 @@ class Settings {
     constructor() {
         this._mainOutput = "";
         this._numberOfRows = 7;
-        this._selectedKeyboards =  ["EnglishUKBetter", "GreekForEnglishSpeakers", "RussianJCUKEN"];
+        this._selectedKeyboards = ["EnglishUKBetter", "GreekForEnglishSpeakers", "RussianJCUKEN"];
         this._showInstructions = true;
 
         this.loadFromLocalStorage();
@@ -234,10 +234,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         if ($scope.shiftState == 0) {
             $scope.shiftState = 1;
         }
-        if ($scope.shiftState == 1 && !$scope.shiftKeyIsDown) {
+        else if ($scope.shiftState == 1 && !$scope.shiftKeyIsDown) {
             $scope.shiftState = 0;
         }
-        if ($scope.shiftState == 2) {
+        else if ($scope.shiftState == 2) {
             $scope.shiftState = 0;
         }
     }
@@ -246,10 +246,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         if ($scope.shiftState == 0) {
             $scope.shiftState = 2;
         }
-        if ($scope.shiftState == 1 && !$scope.shiftKeyIsDown) {
+        else if ($scope.shiftState == 1 && !$scope.shiftKeyIsDown) {
             $scope.shiftState = 2;
         }
-        if ($scope.shiftState == 2) {
+        else if ($scope.shiftState == 2) {
             $scope.shiftState = 0;
         }
     }
@@ -258,10 +258,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         if ($scope.altState == 0) {
             $scope.altState = 1;
         }
-        if ($scope.altState == 1 && !$scope.altKeyIsDown) {
+        else if ($scope.altState == 1 && !$scope.altKeyIsDown) {
             $scope.altState = 0;
         }
-        if ($scope.altState == 2) {
+        else if ($scope.altState == 2) {
             $scope.altState = 0;
         }
     }
@@ -270,10 +270,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         if ($scope.altState == 0) {
             $scope.altState = 2;
         }
-        if ($scope.altState == 1 && !$scope.altKeyIsDown) {
+        else if ($scope.altState == 1 && !$scope.altKeyIsDown) {
             $scope.altState = 2;
         }
-        if ($scope.altState == 2) {
+        else if ($scope.altState == 2) {
             $scope.altState = 0;
         }
     }
@@ -282,7 +282,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         if ($scope.controlState == 0) {
             $scope.controlState = 1;
         }
-        if ($scope.controlState == 1 && !$scope.controlKeyIsDown) {
+        else if ($scope.controlState == 1 && !$scope.controlKeyIsDown) {
             $scope.controlState = 0;
         }
     }
@@ -348,6 +348,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
                 var key = $scope.currentKeyboard.getKey(i);
 
                 $scope.pressKey(key);
+                key.isDown = true;
 
                 event.preventDefault();
             }
@@ -425,6 +426,22 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     }
 
     $scope.keyUp = function (event) {
+
+        if ($scope.controlState == 0 && event.code != "Space") {
+            var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
+
+            if (i < 0) {
+                i = defaultKeyboardUpperShiftRegister.indexOf(event.key);
+            }
+
+            if (i >= 0) {
+                var key = $scope.currentKeyboard.getKey(i);
+
+                key.isDown = false;
+
+                event.preventDefault();
+            }
+        }
 
         if (event.code == "Space") {
             $scope.spaceKeyIsDown = false;

@@ -61,13 +61,11 @@ a {
     a:hover {
         text-decoration: underline;
     }
-
-
+    
 @media (min-width:400px) {
-
     h1 {
-        font-size: 22px;
-        margin: 70px 0px;
+        font-size: 20px;
+        margin: 40px 0px;
     }
 
     h2 {
@@ -75,19 +73,18 @@ a {
         margin: 20px 0px;
     }
 
-
     p {
         font-size: 14px;
         margin: 20px 0px;
     }
-
-    th, td {
-        font-family: inherit;
-        font-weight: inherit;
-        color: inherit;
-    }
 }
 
+@media (min-width:700px) {
+    h1 {
+        font-size: 22px;
+        margin: 70px 0px;
+    }
+}
 
 .donatebutton {
     display: none;
@@ -114,9 +111,7 @@ a {
         padding: 0px;
         display: inline;
     }
-
-
-
+    
 .copybutton {
     font-size: 14px;
     padding: 4px 14px;
@@ -132,19 +127,17 @@ a {
         background-color: #2f7ae2;
     }
 
-
 @media (min-width:400px) {
-
-
-    .donatebutton {
-        display: inline-block;
-    }
-
-
     .copybutton {
         font-size: 17px;
         padding: 7px 17px;
         margin-left: 5px;
+    }
+}
+
+@media (min-width:700px) {
+    .donatebutton {
+        display: inline-block;
     }
 }
 
@@ -179,9 +172,8 @@ a {
 }
 
 @media (min-width:400px) {
-
     .outputAndSettings {
-        padding: 0px;
+        padding: 0px 7px;
     }
 
     .instructions {
@@ -189,14 +181,25 @@ a {
     }
 
     .mainoutput {
-        padding: 20px;
-        font-size: 20px;
-        font-family: 'Times New Roman';
+        padding: 17px;
+        font-size: 17px;
     }
 
     .links {
         margin: 20px 0px;
         font-size: 14px;
+    }
+}
+
+@media (min-width:700px) {
+    .outputAndSettings {
+        padding: 0px;
+    }
+
+    .mainoutput {
+        padding: 20px;
+        font-size: 20px;
+        font-family: 'Times New Roman';
     }
 }
 
@@ -208,7 +211,12 @@ a {
 }
 
 @media (min-width:400px) {
+    .keyboard {
+        font-size: 17px;
+    }
+}
 
+@media (min-width:700px) {
     .keyboard {
         font-size: 20px;
         margin: 40px -2px 200px -2px;
@@ -238,7 +246,6 @@ a {
     font-family: Arial, sans-serif;
 }
 
-
 .keyspace {
     display: inline-block;
     padding: 0em;
@@ -265,9 +272,13 @@ a {
     color: #FFFFFF;
 }
 
-@media (min-width:400px) {
+@media (min-width:400px) {  .keyboard-key {
+        padding: 0.7em;
+      
+    }
+}
 
-
+@media (min-width:700px) {
     .keyboard-key {
         padding: 1em;
         background-color: #FAFAFA;
@@ -293,7 +304,6 @@ a {
         border: 1px solid #E1E1E1;
     }
 
-
     .keyboard-keyboardselected {
         background-color: #F4F4F4;
         background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
@@ -301,7 +311,6 @@ a {
         color: inherit;
     }
 }
-
 
 .keyboard-key-uppershift, .keyboard-key-alternateuppershift, .keyboard-key-alternatelowershift {
     position: initial;
@@ -316,9 +325,7 @@ a {
     display: none;
 }
 
-
-@media (min-width:400px) {
-
+@media (min-width:700px) {
     .keyboard-key-uppershift, .keyboard-key-alternateuppershift, .keyboard-key-alternatelowershift {
         position: absolute;
         display: block;

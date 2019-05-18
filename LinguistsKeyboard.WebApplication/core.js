@@ -46,20 +46,22 @@ class Keyboard {
         this.row4Keys = [];
 
         for (var i = 0; i < 12; i++) {
-            this.row1Keys.push(this.getKey(i))
+            this.row1Keys.push(this.createKey(i));
         }
 
         for (var i = 12; i < 24; i++) {
-            this.row2Keys.push(this.getKey(i))
+            this.row2Keys.push(this.createKey(i));
         }
 
         for (var i = 24; i < 36; i++) {
-            this.row3Keys.push(this.getKey(i))
+            this.row3Keys.push(this.createKey(i));
         }
 
         for (var i = 36; i < 47; i++) {
-            this.row4Keys.push(this.getKey(i))
+            this.row4Keys.push(this.createKey(i));
         }
+
+        this.allKeys = this.row1Keys.concat(this.row2Keys).concat(this.row3Keys).concat(this.row4Keys);
     }
 
     get l() {
@@ -78,8 +80,13 @@ class Keyboard {
         return this.alternateUpperShift;
     }
 
-    getKey(i) {    
-            return new Key(this.l[i], this.u[i], this.al[i], this.au[i]);     
+    createKey(i) {
+        return new Key(this.l[i], this.u[i], this.al[i], this.au[i]);
+
+    }
+
+    getKey(i) {
+        return this.allKeys[i];
     }
 
     getLetter(forDefault) {

@@ -32,7 +32,7 @@ h1 {
 }
 
 h2 {
-    font-size: 17px;
+    font-size: 14px;
     text-align: center;
     margin: 14px 0px;
 }
@@ -71,11 +71,11 @@ a {
 @media (min-width:450px) {
     h1 {
         font-size: 20px;
-        margin: 40px 0px;
+        margin: 47px 0px;
     }
 
     h2 {
-        font-size: 20px;
+        font-size: 17px;
         margin: 20px 0px;
     }
 
@@ -89,6 +89,11 @@ a {
     h1 {
         font-size: 22px;
         margin: 70px 0px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin: 27px 0px;
     }
 }
 
@@ -375,14 +380,13 @@ a {
 }
 
 .settings {
-    margin: 20px auto;
+    margin: 14px auto;
     max-width: 700px;
-    border: 1px dashed #D0D0D0;
-    border-radius: 2px;
+    font-size: 14px;
 }
 
     .settings th {
-        padding: 7px 20px 7px 27px;
+        padding: 7px 10px 7px 17px;
     }
 
     .settings td {
@@ -406,4 +410,23 @@ a {
     font-size: 14px;
     outline: none;
     font-family: inherit;
+}
+
+@media (min-width:450px) {
+}
+
+@media (min-width:700px) {
+    .settings {
+        margin: 20px auto;
+        border: 1px dashed #D0D0D0;
+        border-radius: 2px;
+    }
+
+        .settings th {
+            padding: 7px 20px 7px 27px;
+        }
+
+        .settings td {
+            padding: 7px;
+        }
 }

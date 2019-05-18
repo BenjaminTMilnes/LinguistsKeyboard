@@ -15,16 +15,6 @@ const englishDiacritics = new Keyboard("English (UK) with Diacritics", "English 
 
 
 
-const Mathematics1 = new Keyboard("Mathematics Set 1", "Mathematics 1", "mathematics1", true, "1234567890\u2212\u002bqwertyuiop()asdfghjkl${} zxcvbnm,. ".split("").join("|"), "            QWERTYUIOP[]ASDFGHJKL \u27e8\u27e9 ZXCVBNM<> ".split("").join("|"), "                      \u230a\u230b                    \u226a\u226b ".split("").join("|"), "                      \u2308\u2309          \u27ea\u27eb        \u2264\u2265 ".split("").join("|"));
-
-const Mathematics2 = new Keyboard("Mathematics Set 2 (Greek)", "Mathematics 2 (Greek)", "mathematics2", true, "1234567890\u2212\u002bχωερτυ ιοπ()ασδφθη κλ${} ζξγψβνμ,. ".split("").join("|"), "            ΧΩΕΡΤΥ ΙΟΠ[]ΑΣΔΦΘΗ ΚΛ \u27e8\u27e9 ΖΞΓΨΒΝΜ   ".split("").join("|"), "              εϱ     ϖ\u230a\u230b ς φϑ  ϰ               ".split("").join("|"), "                      \u2308\u2309          \u27ea\u27eb ".split("").join("|"));
-
-const Mathematics3 = new Keyboard("Mathematics Set 3", "Mathematics 3", "mathematics3", true, "1234567890\u2212\u002b          ()א ∇  ħ   ${}     ב     ".split("").join("|"), "                      []     Ħ    \u27e8\u27e9               ".split("").join("|"), "                      \u230a\u230b            ".split("").join("|"), "                      \u2308\u2309          \u27ea\u27eb                           ".split("").join("|"));
-
-
-
-
-
 
 class Settings {
     constructor() {

@@ -1,0 +1,33 @@
+﻿Mathematics Set 1
+Mathematics 1
+
+
+
+_ 1 2 3 4 5 6 7 8 9 0 \u2212 \u002b
+_                       
+_               \u226a \u2264 < ≡ =
+_               \u226b \u2265 >   ≠
+
+
+
+_ q w e r t y u i o p ( ) 
+_ Q W E R T Y U I O P [ ]
+_     ∃               \u230a \u230b
+_     ∄               \u2308 \u2309
+
+
+
+_ a s d f g h j k l $ { }
+_ A S D F G H J K L   \u27e8 \u27e9
+_     ∂     ħ      
+_ ∀   ∇     Ħ         \u27ea \u27eb
+
+
+
+_ ÷ z x c v b n m , . ×
+_   Z X C V B N M 
+_                   
+_                   
+
+
+            

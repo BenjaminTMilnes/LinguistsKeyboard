@@ -1,7 +1,6 @@
 ﻿
 var application = angular.module("LinguistsKeyboard", ["ngRoute"]);
 
-
 application.config(function ($routeProvider) {
     $routeProvider
         .when("/", { templateUrl: "keyboard.html", controller: "KeyboardController" })
@@ -10,17 +9,12 @@ application.config(function ($routeProvider) {
 });
 
 
-const englishDiacritics = new Keyboard("English (UK) with Diacritics", "English + Diacritics", "english2", true, defaultKeyboardLowerShiftRegister.split("").join("|"), defaultKeyboardUpperShiftRegister.split("").join("|"), "\u0301|\u0300|\u0302|\u030C|\u0306|\u0304|\u0307|\u0308|\u0303|\u030A" + BLANK.substr(10).split("").join("|"), BLANK.split("").join("|"));
-
-
-
-
 
 class Settings {
     constructor() {
         this._mainOutput = "";
         this._numberOfRows = 7;
-        this._selectedKeyboards = ["english3", "french1", "german1", "greek2"];
+        this._selectedKeyboards =  ["EnglishUKBetter", "GreekForEnglishSpeakers", "RussianJCUKEN"];
         this._showInstructions = true;
 
         this.loadFromLocalStorage();

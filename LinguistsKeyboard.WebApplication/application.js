@@ -297,6 +297,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.enter();
     }
 
+    $scope.clickSpace = function () {
+        $scope.space();
+    }
+
     $scope.clickBackspace = function () {
         $scope.backspace();
     }
@@ -401,12 +405,12 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             event.preventDefault();
         }
 
-        if (event.code == "ArrowLeft" && $scope.controlIsDown) {
+        if (event.code == "ArrowLeft" && $scope.controlState == 1) {
             $scope.selectPreviousKeyboard();
             event.preventDefault();
         }
 
-        if (event.code == "ArrowRight" && $scope.controlIsDown) {
+        if (event.code == "ArrowRight" && $scope.controlState == 1) {
             $scope.selectNextKeyboard();
             event.preventDefault();
         }

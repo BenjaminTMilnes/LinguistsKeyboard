@@ -204,7 +204,7 @@ a {
     font-size: 14px;
     margin: 20px 0px 100px 0px;
     background-color: #F0F0F0;
-    padding: 1px;
+    padding: 1px 1px 2px 1px;
 }
 
 @media (min-width:400px) {
@@ -256,8 +256,8 @@ a {
 }
 
 .keyboard-keydown {
-    background-color: #F4F4F4;
-    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
+    background-color: #105ecc;
+    color: #FFFFFF;
 }
 
 .keyboard-keyboardselected {
@@ -288,6 +288,8 @@ a {
     }
 
     .keyboard-keydown {
+    background-color: #F4F4F4;
+    background-image: linear-gradient( #F0F0F0, #F4F4F4, #F2F2F2);
         border: 1px solid #E1E1E1;
     }
 

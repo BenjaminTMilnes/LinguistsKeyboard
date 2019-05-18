@@ -31,8 +31,7 @@
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:5.67em;" ng-class="(capsLockState == 1)? 'keyboard-keydown':''" ng-click="clickCapsLock()">caps</div>
-        <div class="keyspace showformobile" style="width:2em;"></div>
-        <letterkey class="keyboard-key keyboard-letterkey" ng-class="(key.isDown) ? 'keyboard-keydown' : ''" key="key" register="register" ng-repeat="key in currentKeyboard.row3Keys"></letterkey>
+          <letterkey class="keyboard-key keyboard-letterkey" ng-class="(key.isDown) ? 'keyboard-keydown' : ''" key="key" register="register" ng-repeat="key in currentKeyboard.row3Keys"></letterkey>
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:2.67em;"></div>
     </div>
     <div class="keyboard-row">

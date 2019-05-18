@@ -1,0 +1,29 @@
+﻿French (Better)
+French (Better)
+
+
+
+_ 1 2 3 4 5 6 7 8 9 0 - \u2013
+_ ( ‹ « ‘ “ ” ’ » › ) * \u2014
+_ [ { ` ' \"        } ]   
+_ §             ^ % °   
+
+
+
+_ a z e r t y u i o p à é
+_ A Z E R T Y U I O P À É
+_ æ   €           œ   â
+_ Æ   &           Œ   Â
+
+
+
+_ q s d f g h j k l m ù è
+_ Q S D F G H J K L M Ù È
+_   $             £    
+_ 
+
+
+_ ’ w x c v b n , . / ?
+_   W X C V B N ; : \\ !
+_       ç       < >             
+_       Ç           

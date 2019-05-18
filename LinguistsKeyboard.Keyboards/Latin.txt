@@ -1,0 +1,31 @@
+﻿Latin
+Latin
+
+
+
+_ 1 2 3 4 5 6 7 8 9 0 - \u2013
+_ # * { } ' \"     ~ %   \u2014
+_ 
+_ 
+
+
+
+_ q   e r t y v i o p ( )
+_ Q   E R T Y V I O P [ ]
+_     
+_     &
+
+
+
+_ a s d f g h   k l ’ ‘ ’
+_ A S D F G H   K L   “ ”
+_                 £
+_ 
+
+
+
+_   z x c   b n m , . ?
+_   Z X C   B N M ; : !
+_                 \\ /
+_ 
+

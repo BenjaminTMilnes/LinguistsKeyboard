@@ -28,6 +28,8 @@ namespace LinguistsKeyboard.TerminalApplication
 
             var js = string.Join("", keyboards.Select(k => keyboardCompiler.ExportKeyboardToJS(k)));
 
+            js += string.Format("const Keyboards = [{0}];", string.Join(", ", keyboards.Select(k => k.Reference)));
+
             File.WriteAllText(@"..\..\..\LinguistsKeyboard.WebApplication\keyboards.js", js);
         }
     }

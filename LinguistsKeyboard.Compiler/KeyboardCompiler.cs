@@ -29,6 +29,21 @@ namespace LinguistsKeyboard.Compiler
             keyboard.Row3Keys = GetKeysForRow(l[10], l[11], l[12], l[13], 12);
             keyboard.Row4Keys = GetKeysForRow(l[14], l[15], l[16], l[17], 11);
 
+            if (l.Length > 18)
+            {
+                keyboard.Row1PhoneKeys = GetKeysForRow(l[18], l[19], l[20], l[21], 10);
+                keyboard.Row2PhoneKeys = GetKeysForRow(l[22], l[23], l[24], l[25], 10);
+                keyboard.Row3PhoneKeys = GetKeysForRow(l[26], l[27], l[28], l[29], 9);
+                keyboard.Row4PhoneKeys = GetKeysForRow(l[30], l[31], l[32], l[33], 7);
+            }
+            else
+            {
+                keyboard.Row1PhoneKeys = keyboard.Row1Keys;
+                keyboard.Row2PhoneKeys = keyboard.Row2Keys;
+                keyboard.Row3PhoneKeys = keyboard.Row3Keys;
+                keyboard.Row4PhoneKeys = keyboard.Row4Keys;
+            }
+
             return keyboard;
         }
 

@@ -219,7 +219,7 @@ a {
     font-size: 14px;
     margin: 20px 0px 100px 0px;
     background-color: #F0F0F0;
-    padding: 1px 1px 2px 1px;
+    padding: 2px 1px 2px 1px;
 }
 
 @media (min-width:450px) {
@@ -248,7 +248,7 @@ a {
     background-color: #FFFFFF;
     border: none;
     border-radius: 4px;
-    margin: 2px;
+    margin: 3px;
     text-align: center;
     box-sizing: border-box;
     user-select: none;

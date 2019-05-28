@@ -15,5 +15,9 @@ namespace LinguistsKeyboard.Compiler
         public IEnumerable<Key> Row2Keys { get; set; }
         public IEnumerable<Key> Row3Keys { get; set; }
         public IEnumerable<Key> Row4Keys { get; set; }
+        public IEnumerable<Key> Row1PhoneKeys { get; set; }
+        public IEnumerable<Key> Row2PhoneKeys { get; set; }
+        public IEnumerable<Key> Row3PhoneKeys { get; set; }
+        public IEnumerable<Key> Row4PhoneKeys { get; set; }
     }
 }

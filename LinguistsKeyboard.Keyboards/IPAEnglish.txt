@@ -1,0 +1,30 @@
+﻿IPA for English [QWERTY]
+IPA for English
+
+
+
+_ 1 2 3 4 5 6 7 8 9 0 - \u2013
+_ # * { } ' \"     ~ %   \u2014
+_ 
+_  
+
+
+
+_ ɛ w e r t θ u i o p ( )
+_   ʊ ə       ʌ ɪ ɔ   [ ]
+_            
+_                
+
+
+
+_ a s d f g h j k l ɑ ð ː
+_         ʒ         ɒ
+_                 
+_                  
+
+
+
+_ æ z x ʃ v b n m , . ?
+_             ŋ   ; : !
+_                 \\ / 
+_                

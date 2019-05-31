@@ -363,9 +363,6 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     }
 
     $scope.backspace = function () {
-        console.log($scope.cursor1);
-        console.log($scope.cursor2);
-
         if ($scope.cursor1 == $scope.cursor2) {
             $scope.deleteAtPosition($scope.cursor1 , 1, -1);
         }
@@ -384,9 +381,6 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     }
 
     $scope.deleteSection = function (i, j, direction) {
-
-        console.log(i);
-        console.log(j);
 
         var l = $scope.mainOutput.length;
 
@@ -446,12 +440,8 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.setRegister();
 
         if ($scope.controlState == 0 && event.code != "Space") {
-            var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
-
-            if (i < 0) {
-                i = defaultKeyboardUpperShiftRegister.indexOf(event.key);
-            }
-
+            var i = keycodes.indexOf(event.code);
+            
             if (i >= 0) {
                 var key = $scope.currentKeyboard.getKey(i);
 
@@ -568,12 +558,8 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.setSelection();
 
         if ($scope.controlState == 0 && event.code != "Space") {
-            var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
-
-            if (i < 0) {
-                i = defaultKeyboardUpperShiftRegister.indexOf(event.key);
-            }
-
+            var i = keycodes.indexOf(event.code);
+            
             if (i >= 0) {
                 var key = $scope.currentKeyboard.getKey(i);
 

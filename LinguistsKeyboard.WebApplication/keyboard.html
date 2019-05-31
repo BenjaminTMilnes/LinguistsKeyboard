@@ -1,11 +1,16 @@
 ﻿
 <div class="outputAndSettings">
 
-    <textarea id="mainOutput" class="mainoutput" rows="{{settings.numberOfRows}}" ng-model="mainOutput" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)"></textarea>
+    <textarea id="mainOutput" class="mainoutput" rows="{{settings.numberOfRows}}" ng-model="mainOutput" ng-click="clickMainOutput()" ng-keydown="keyDown($event)" ng-keyup="keyUp($event)"></textarea>
 
-    <div style="text-align:right;"><button class="copybutton" ng-click="clearMainOutput()">Clear</button><button class="copybutton" data-clipboard-target="#mainOutput">Copy</button></div>
+    <div style="text-align:right;">
+        <button class="copybutton" ng-click="clearMainOutput()">Clear</button>
+        <button class="copybutton" data-clipboard-target="#mainOutput">Copy</button>
+    </div>
 
-    <div class="links"><a href="/#/settings" title="Settings">Settings</a> | <a href="/#/credits" title="Credits">Credits</a></div>
+    <div class="links">
+        <a href="/#/settings" title="Settings">Settings</a> | <a href="/#/credits" title="Credits">Credits</a>
+    </div>
 
     <p ng-show="settings.showInstructions" class="instructions">Press <code>Ctrl</code> and then a number to select a keyboard, or press <code>Ctrl</code> and then an arrow to move between them.</p>
 
@@ -31,7 +36,7 @@
     </div>
     <div class="keyboard-row">
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:5.67em;" ng-class="(capsLockState == 1)? 'keyboard-keydown':''" ng-click="clickCapsLock()">caps</div>
-          <letterkey class="keyboard-key keyboard-letterkey" ng-class="(key.isDown) ? 'keyboard-keydown' : ''" key="key" register="register" ng-repeat="key in currentKeyboard.row3Keys"></letterkey>
+        <letterkey class="keyboard-key keyboard-letterkey" ng-class="(key.isDown) ? 'keyboard-keydown' : ''" key="key" register="register" ng-repeat="key in currentKeyboard.row3Keys"></letterkey>
         <div class="keyboard-key keyboard-nonletterkey hideformobile" style="width:2.67em;"></div>
     </div>
     <div class="keyboard-row">

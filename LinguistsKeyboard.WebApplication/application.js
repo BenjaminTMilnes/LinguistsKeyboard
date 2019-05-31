@@ -90,7 +90,7 @@ class Settings {
         return this._showInstructions;
     }
 
-    set  showInstructions(value) {
+    set showInstructions(value) {
         if (value != this._showInstructions) {
             this._showInstructions = value;
 
@@ -98,6 +98,8 @@ class Settings {
         }
     }
 }
+
+
 
 application.factory("settings", function () {
     return new Settings();
@@ -114,11 +116,17 @@ application.directive("letterkey", function () {
     };
 });
 
+
+
 application.controller("KeyboardController", ["$scope", "settings", function KeyboardController($scope, settings) {
 
     $scope.settings = settings;
 
+    $scope.mainOutputElement = document.getElementById("mainOutput");
     $scope.mainOutput = settings.mainOutput;
+
+    $scope.cursor1 = $scope.mainOutput.length;
+    $scope.cursor2 = $scope.mainOutput.length;
 
     $scope.currentKeyboard = null;
     $scope.currentKeyboardIndex = 0;
@@ -142,8 +150,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     $scope.capsLockState = 0;
 
     $scope.backspaceKeyIsDown = false;
+    $scope.deleteKeyIsDown = false;
     $scope.spaceKeyIsDown = false;
     $scope.tabKeyIsDown = false;
+    $scope.enterKeyIsDown = false;
 
     $scope.setKeyboard = function (keyboard) {
         $scope.currentKeyboard = keyboard;
@@ -179,7 +189,12 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.mainOutput = "";
         }
 
-        $scope.mainOutput += letter;
+        var l = $scope.mainOutput.length;
+
+        $scope.mainOutput = $scope.mainOutput.slice(0, $scope.cursor1) + letter + $scope.mainOutput.slice($scope.cursor2, l);
+
+        $scope.cursor1 = $scope.cursor1 + 1;
+        $scope.cursor2 = $scope.cursor1;
     }
 
     $scope.getRegister = function () {
@@ -202,6 +217,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         return 1;
     }
 
+    $scope.setRegister = function () {
+        $scope.register = $scope.getRegister();
+    }
+
     $scope.pressKey = function (key) {
         var c = "";
         var r = $scope.getRegister();
@@ -222,13 +241,9 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.typeLetter(c);
     }
 
-    $scope.pressSpace = function () {
-        $scope.typeLetter(" ");
-    }
-
     $scope.clickKey = function (key) {
         $scope.pressKey(key);
-        
+
         if (!$scope.shiftKeyIsDown && $scope.shiftState == 1) {
             $scope.shiftState = 0;
         }
@@ -241,7 +256,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.controlState = 0;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
     }
 
     $scope.clickShift = function () {
@@ -255,7 +270,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.shiftState = 0;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
     }
 
     $scope.doubleClickShift = function () {
@@ -269,7 +284,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.shiftState = 0;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
     }
 
     $scope.clickAlt = function () {
@@ -283,7 +298,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.altState = 0;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
     }
 
     $scope.doubleClickAlt = function () {
@@ -297,7 +312,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.altState = 0;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
     }
 
     $scope.clickControl = function () {
@@ -308,10 +323,12 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.controlState = 0;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
     }
 
-    $scope.clickCapsLock = function () { }
+    $scope.clickCapsLock = function () {
+        $scope.capsLockState = ($scope.capsLockState == 0) ? 1 : 0;
+    }
 
     $scope.clickTab = function () {
         $scope.tab();
@@ -329,6 +346,10 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
         $scope.backspace();
     }
 
+    $scope.clickDelete = function () {
+
+    }
+
     $scope.tab = function () {
         $scope.typeLetter("\t");
     }
@@ -342,11 +363,70 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
     }
 
     $scope.backspace = function () {
+        console.log($scope.cursor1);
+        console.log($scope.cursor2);
+
+        if ($scope.cursor1 == $scope.cursor2) {
+            $scope.deleteAtPosition($scope.cursor1 , 1, -1);
+        }
+        else {
+            $scope.deleteSection($scope.cursor1, $scope.cursor2);
+        }
+    }
+
+    $scope.delete = function () {
+        if ($scope.cursor1 == $scope.cursor2) {
+            $scope.deleteAtPosition($scope.cursor1, 1, 1);
+        }
+        else {
+            $scope.deleteSection($scope.cursor1, $scope.cursor2);
+        }
+    }
+
+    $scope.deleteSection = function (i, j, direction) {
+
+        console.log(i);
+        console.log(j);
+
         var l = $scope.mainOutput.length;
 
-        if (l > 0) {
-            $scope.mainOutput = $scope.mainOutput.slice(0, l - 1);
+        if (i < 0) { i = 0; }
+        if (i > l) { i = l; }
+        if (j < 0) { j = 0; }
+        if (j > l) { j = l; }
+        if (j < i) { var k = i; i = j; j = k; }
+
+        if (j >= i) {
+            $scope.mainOutput = $scope.mainOutput.slice(0, i) + $scope.mainOutput.slice(j, l);
+
+       
+                $scope.cursor1 = i;
+                $scope.cursor2 = i;
+         
+
+            $scope.setSelection();
         }
+    }
+
+    $scope.deleteAtPosition = function (i, n, direction) {
+        var l = $scope.mainOutput.length;
+
+        if (direction > 0) {
+            $scope.deleteSection(i, i + n, direction);
+        }
+        if (direction < 0) {
+            $scope.deleteSection(i, i - n, direction);
+        }
+    }
+
+    $scope.setSelection = function () {
+        $scope.mainOutputElement.selectionStart = $scope.cursor1;
+        $scope.mainOutputElement.selectionEnd = $scope.cursor2;
+    }
+
+    $scope.clickMainOutput = function () {
+        $scope.cursor1 = $scope.mainOutputElement.selectionStart;
+        $scope.cursor2 = $scope.mainOutputElement.selectionEnd;
     }
 
     $scope.keyDown = function (event) {
@@ -363,7 +443,7 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             $scope.controlKeyIsDown = false;
         }
 
-        $scope.register = $scope.getRegister();
+        $scope.setRegister();
 
         if ($scope.controlState == 0 && event.code != "Space") {
             var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
@@ -399,14 +479,15 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             event.preventDefault();
         }
 
-        if (event.code == "Enter") {
-            $scope.enter();
-            event.preventDefault();
-        }
-
         if (event.code == "Backspace") {
             $scope.backspaceKeyIsDown = true;
             $scope.backspace();
+            event.preventDefault();
+        }
+
+        if (event.code == "Enter") {
+            $scope.enterKeyIsDown = true;
+            $scope.enter();
             event.preventDefault();
         }
 
@@ -443,12 +524,48 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             event.preventDefault();
         }
 
-        $scope.register = $scope.getRegister();
+        if (event.code == "ArrowLeft" && $scope.controlState == 0) {
+            if ($scope.shiftIsDown) {
+                if ($scope.cursor2 > 0) {
+                    $scope.cursor2 -= 1;
+                }
+            }
+            else {
+                if ($scope.cursor1 > 0) {
+                    $scope.cursor1 -= 1;
+                }
 
-        $scope.settings.mainOutput = $scope.mainOutput;
+                $scope.cursor2 = $scope.cursor1;
+            }
+
+            event.preventDefault();
+        }
+
+        if (event.code == "ArrowRight" && $scope.controlState == 0) {
+            if ($scope.shiftIsDown) {
+                if ($scope.cursor2 > 0) {
+                    $scope.cursor2 += 1;
+                }
+            }
+            else {
+                if ($scope.cursor1 < $scope.mainOutput.length) {
+                    $scope.cursor1 += 1;
+                }
+
+                $scope.cursor2 = $scope.cursor1;
+            }
+
+            event.preventDefault();
+        }
+
+        $scope.setSelection();
+        $scope.setRegister();
+        $scope.saveMainOutput();
     }
 
     $scope.keyUp = function (event) {
+
+        $scope.setSelection();
 
         if ($scope.controlState == 0 && event.code != "Space") {
             var i = defaultKeyboardLowerShiftRegister.indexOf(event.key);
@@ -493,6 +610,11 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             event.preventDefault();
         }
 
+        if (event.code == "Enter") {
+            $scope.enterKeyIsDown = false;
+            event.preventDefault();
+        }
+
         if (event.code == "ShiftLeft" || event.code == "ShiftRight") {
             $scope.shiftKeyIsDown = false;
             $scope.shiftState = 0;
@@ -511,16 +633,31 @@ application.controller("KeyboardController", ["$scope", "settings", function Key
             event.preventDefault();
         }
 
-        $scope.register = $scope.getRegister();
+        if (event.code == "ArrowLeft" && $scope.controlState == 1) {
+            event.preventDefault();
+        }
+
+        if (event.code == "ArrowRight" && $scope.controlState == 1) {
+            event.preventDefault();
+        }
+
+        $scope.setRegister();
+    }
+
+    $scope.saveMainOutput = function () {
+        $scope.settings.mainOutput = $scope.mainOutput;
     }
 
     $scope.clearMainOutput = function () {
         $scope.mainOutput = "";
 
-        $scope.settings.mainOutput = $scope.mainOutput;
+        $scope.cursor1 = 0;
+        $scope.cursor2 = 0;
+
+        $scope.saveMainOutput();
     }
 
-    $scope.register = $scope.getRegister();
+    $scope.setRegister();
     $scope.selectKeyboard(0);
 
     new ClipboardJS(".copybutton");
